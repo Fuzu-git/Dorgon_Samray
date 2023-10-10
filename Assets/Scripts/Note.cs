@@ -5,19 +5,16 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     public float speed;
-    private Rigidbody2D rb; 
+    private Rigidbody2D _rb;
+    public string noteColor; 
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
-        rb.velocity = new Vector2(0, -speed);
-    }
-
-    void Update()
-    {
+        _rb.velocity = new Vector2(-speed, 0);
     }
 }

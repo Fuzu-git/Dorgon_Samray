@@ -8,8 +8,11 @@ public class Activator : MonoBehaviour
     bool active = false;
     GameObject note;
     Color old;
-    private SpriteRenderer sr; 
+    private SpriteRenderer sr;
 
+    [SerializeField] string activatorColor; 
+
+    private Note _note; 
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
