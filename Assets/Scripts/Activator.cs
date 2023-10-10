@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Activator : MonoBehaviour
 {
-    public KeyCode key;
     bool active = false;
     GameObject note;
     Color old;
     private SpriteRenderer sr;
 
-    [SerializeField] string activatorColor; 
+    public List<KeyCode> keyList = new();
 
-    private Note _note; 
+    private Note _note;
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -25,12 +24,15 @@ public class Activator : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(key))
+        foreach (KeyCode key in keyList)
         {
-            StartCoroutine(Pressed());
-            if (active)
+            if (Input.GetKeyDown(key))
             {
-                Destroy(note);
+                StartCoroutine(Pressed());
+                if (active && key == _note.noteColor)
+                {
+                    Destroy(note);
+                }
             }
         }
     }
@@ -41,6 +43,7 @@ public class Activator : MonoBehaviour
         if (col.gameObject.tag == "Note")
         {
             note = col.gameObject;
+            _note = note.GetComponent<Note>(); 
         }
     }
 

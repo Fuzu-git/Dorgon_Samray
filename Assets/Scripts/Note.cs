@@ -6,7 +6,7 @@ public class Note : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D _rb;
-    public string noteColor; 
+    public KeyCode noteColor; 
 
     void Awake()
     {
