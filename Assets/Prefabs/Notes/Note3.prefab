@@ -162,4 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  noteColor: 101
+  noteColor: 122
+  acceleration: 0.5

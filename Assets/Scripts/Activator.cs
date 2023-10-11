@@ -12,6 +12,11 @@ public class Activator : MonoBehaviour
     public List<KeyCode> keyList = new();
 
     private Note _note;
+    private BonusNote _bonusNote;
+    [SerializeField] private NoteSpawn noteSpawn;
+
+    //[SerializeField] private float bonusTime = 10f; 
+
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -26,10 +31,16 @@ public class Activator : MonoBehaviour
     {
         foreach (KeyCode key in keyList)
         {
+            
             if (Input.GetKeyDown(key))
             {
                 StartCoroutine(Pressed());
-                if (active && key == _note.noteColor)
+                if (active && !noteSpawn.bonusIsActive && key == _note.noteColor)
+                {
+                    Destroy(note);
+                }
+
+                if (active && noteSpawn.bonusIsActive)
                 {
                     Destroy(note);
                 }
@@ -40,10 +51,11 @@ public class Activator : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         active = true;
-        if (col.gameObject.tag == "Note")
+        if (col.gameObject.CompareTag("Note"))
         {
             note = col.gameObject;
-            _note = note.GetComponent<Note>(); 
+            _note = note.GetComponent<Note>();
+            _bonusNote = note.GetComponent<BonusNote>();
         }
     }
 

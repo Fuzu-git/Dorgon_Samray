@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   noteColor: 97
+  acceleration: 0.5
 --- !u!222 &5927268464067359381
 CanvasRenderer:
   m_ObjectHideFlags: 0

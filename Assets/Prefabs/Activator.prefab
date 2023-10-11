@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6724661121407362638}
   - component: {fileID: 5739035389340185341}
-  - component: {fileID: 58350993708698170}
   - component: {fileID: 3559636678661779360}
+  - component: {fileID: 4840513661401868552}
   m_Layer: 0
   m_Name: Activator
   m_TagString: Untagged
@@ -86,8 +86,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &58350993708698170
-CircleCollider2D:
+--- !u!114 &3559636678661779360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731721226475521114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca4eb6366c2b7dc4ab5ab219b18bb203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyList: 
+  noteSpawn: {fileID: 0}
+--- !u!61 &4840513661401868552
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -119,19 +133,15 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &3559636678661779360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7731721226475521114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca4eb6366c2b7dc4ab5ab219b18bb203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: 97
-  activatorColor: Red
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

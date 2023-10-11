@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Note : MonoBehaviour
+public class BonusNote : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D _rb;
-    public KeyCode noteColor;
 
     [SerializeField] private float acceleration; 
 

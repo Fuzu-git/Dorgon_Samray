@@ -13,6 +13,12 @@ public class NoteSpawn : MonoBehaviour
     [SerializeField] private float minDelta = 0.31f;
     private bool _canSpawn = true;
 
+    public bool bonusIsActive;
+    
+    [SerializeField] private GameObject bonusNote; 
+
+    private Note _note; 
+    
     private void Update()
     {
         if (_canSpawn)
@@ -24,15 +30,18 @@ public class NoteSpawn : MonoBehaviour
     IEnumerator RandomSpawnPoint()
     {
         Transform selectedSpawnPoint = spawnList[Random.Range(0, spawnList.Count)].transform;
-        Instantiate(noteList[Random.Range(0, noteList.Count)], selectedSpawnPoint);
+        if (bonusIsActive) {
+            Instantiate(bonusNote, selectedSpawnPoint);
+        } else 
+        {
+            Instantiate(noteList[Random.Range(0, noteList.Count)], selectedSpawnPoint);
+        } 
         _canSpawn = false;
         yield return new WaitForSeconds(delta);
         if (delta >= minDelta)
         {
             delta -= 0.05f;
         }
-
         _canSpawn = true;
-        Debug.Log("Delta Value " + delta);
     }
 }
