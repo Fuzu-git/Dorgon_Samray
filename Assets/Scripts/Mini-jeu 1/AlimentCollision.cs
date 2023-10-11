@@ -5,22 +5,40 @@ using UnityEngine;
 public class AlimentCollision : MonoBehaviour
 {   
     [SerializeField] AlimentStruct Me;
+    [SerializeField] Spawner spawner;
     [SerializeField] string alimentType;
+    [SerializeField] public float velocity;
 
     private void Awake()
     {
         if (AlimentManager.listOfAlim != null)
         {
+            if (spawner.countBetweenTwoCorrectAliment == spawner.CountBetweenTwoCorrectAlimentMax)
+            {
+                Me = new AlimentStruct(Scoreboard.alimentToTake, Scoreboard.goodSprite);
+                spawner.countBetweenTwoCorrectAliment = 0;
+                Debug.Log("Système anti-malchance activé, countbetween est égal à " + spawner);
+            }
+            else
+            {
+                Me = AlimentManager.listOfAlim[Random.Range(0, AlimentManager.listOfAlim.Count)];
 
-            Me = AlimentManager.listOfAlim[Random.Range(0, AlimentManager.listOfAlim.Count)];
+            }
             this.gameObject.GetComponent<SpriteRenderer>().sprite = Me.Sprite;
             this.alimentType = Me.Name;
+
+            if (Me.Name != Scoreboard.alimentToTake)
+            { spawner.countBetweenTwoCorrectAliment++; }
+            else
+                spawner.countBetweenTwoCorrectAliment = 0;
+
         }
     }
 
-    private void Start()
+    private void Update()
     {
-        
+
+        transform.position += new Vector3(0, -1, 0) * velocity * Time.deltaTime;
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -30,6 +48,7 @@ public class AlimentCollision : MonoBehaviour
             {
                 Debug.Log("Bien vu chacal");
                 Scoreboard.totalScore++;
+                Scoreboard.sucessCounter++;
                 Destroy(gameObject);
             }
             else
@@ -45,6 +64,7 @@ public class AlimentCollision : MonoBehaviour
             {
                 Debug.Log("T'auras jamais la recette !");
                 Scoreboard.rates++;
+                Scoreboard.errorCounter++;
             }
         Destroy(gameObject);
         }

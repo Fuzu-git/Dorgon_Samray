@@ -10,7 +10,8 @@ public class Spawner : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField, ShowIf("show")] GameObject aliment;
     [SerializeField, ShowIf("show")] GameObject spawner;
-    [SerializeField, ShowIf("show")] GameObject newBlock;
+    [SerializeField, ShowIf("show")] GameObject alimentClone;
+    [SerializeField, ShowIf("show")] AlimentCollision alimentCollision;
 
     [SerializeField, ShowIf("show")] int numberOfSpawns;
 
@@ -23,8 +24,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] float multiplier = 1;
 
     [Header("Angle de spawn / Taille des objets")]
-    [SerializeField, ShowIf("show")] public float spawnAngleMax;
-    [SerializeField, ShowIf("show")] public Vector2 spawnSizeMinMax;
+    [SerializeField, ShowIf("show")]  float spawnAngleMax;
+    [SerializeField, ShowIf("show")]  Vector2 spawnSizeMinMax;
+
+    // Trifouille la RNG
+    [Header("int anti malchance")]
+    [SerializeField, ShowIf("show")] int countBetweenTwoCorrectAlimentMax = 4;
+    [SerializeField, ShowIf("show")] public int countBetweenTwoCorrectAliment = 0;
     [Header("CD de spawn minimal et maximal")]
     [SerializeField] Vector2 secondsBetweenSpawnsMinMax;
 
@@ -32,6 +38,8 @@ public class Spawner : MonoBehaviour
 
 
     Vector2 screenHalfSizeWorldUnits;
+
+    public int CountBetweenTwoCorrectAlimentMax { get => countBetweenTwoCorrectAlimentMax; }
 
     void Start()
     {
@@ -43,7 +51,6 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(Time.time);
         
         NormalSpawning();
         
@@ -59,12 +66,11 @@ public class Spawner : MonoBehaviour
 
             float spawnSize = Random.Range(spawnSizeMinMax.x, spawnSizeMinMax.y);
             spawnPosition = new Vector2(Random.Range(-screenHalfSizeWorldUnits.x, screenHalfSizeWorldUnits.x), screenHalfSizeWorldUnits.y + spawnSize);
-            newBlock = (GameObject)Instantiate(aliment, spawnPosition, Quaternion.Euler(Vector3.forward));
+            alimentClone = (GameObject)Instantiate(aliment, spawnPosition, Quaternion.Euler(Vector3.forward));
 
             numberOfSpawns++;
-            newBlock.transform.localScale = Vector2.one * spawnSize;
+            alimentClone.transform.localScale = Vector2.one * spawnSize;
             
-            //Debug.Log(Difficulty.GetDifficultyPercent());
         }
     }
 
