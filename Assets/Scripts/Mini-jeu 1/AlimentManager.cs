@@ -94,13 +94,13 @@ public class AlimentManager : MonoBehaviour
     {
         if (Scoreboard.errorCounter == 3)
         {
-            int goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
-            while (listOfAlim[goodOne].Name == Scoreboard.alimentToTake)
-            {
-                goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
-            }
-            Scoreboard.alimentToTake = listOfAlim[goodOne].Name;
-            Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
+            //int goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
+           // while (listOfAlim[goodOne].Name == Scoreboard.alimentToTake)
+           // {
+//goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
+           // }
+           // Scoreboard.alimentToTake = listOfAlim[goodOne].Name;
+           // Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
             Scoreboard.errorCounter = 0;
             Scoreboard.sucessCounter = 0;
         }
@@ -142,7 +142,7 @@ public class AlimentManager : MonoBehaviour
         {
             Debug.Log("Problème sur l'incrémentation des levels zinedine");
             nextGame.SetActive(true);
-            this.enabled = false;
+            
         }
     }
 }

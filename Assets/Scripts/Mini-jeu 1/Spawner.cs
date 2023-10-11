@@ -53,6 +53,11 @@ public class Spawner : MonoBehaviour
     {
         
         NormalSpawning();
+
+        if(Scoreboard.level == 4)
+        {
+            this.enabled = false;
+        }
         
     }
 
