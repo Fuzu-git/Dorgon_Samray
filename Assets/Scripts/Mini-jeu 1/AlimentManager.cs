@@ -9,6 +9,7 @@ public class AlimentManager : MonoBehaviour
 {
     
     public static List<AlimentStruct> listOfAlim;
+    [SerializeField] string laRecette;
 
     public bool show;
     [Header("Propriétés de l'aliment à ajouter")]
@@ -23,6 +24,12 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("show")] GameObject meat;
     [SerializeField, ShowIf("show")] GameObject fish;
     [SerializeField, ShowIf("show")] GameObject fruit;
+    [SerializeField, ShowIf("show")] GameObject gateau;
+    [SerializeField, ShowIf("show")] GameObject glace;
+    [SerializeField, ShowIf("show")] GameObject salade;
+    [SerializeField, ShowIf("show")] GameObject sushi;
+    [SerializeField, ShowIf("show")] GameObject huitre;
+    //[SerializeField, ShowIf("show")] GameObject licorne;
 
     public bool ShowUI;
     [Header("UI relatif")]
@@ -31,6 +38,7 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_rate;
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_level;
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_success;
+    [SerializeField, ShowIf("ShowUI")] TMP_Text txt_laRecette;
     [SerializeField, ShowIf("ShowUI")] Image img_alimentTake;
     [SerializeField, ShowIf("ShowUI")] GameObject nextGame;
 
@@ -51,16 +59,39 @@ public class AlimentManager : MonoBehaviour
             
         Debug.Log(listOfAlim.Count);
     }
-    [Button]
     public void IniatizeListOfAlim()
     {
         if (listOfAlim != null)
             return;
         listOfAlim = new List<AlimentStruct>();
-        listOfAlim.Add(new AlimentStruct("Légume", legume.GetComponent<SpriteRenderer>().sprite));
-        listOfAlim.Add(new AlimentStruct("Poisson", fish.GetComponent<SpriteRenderer>().sprite));
-        listOfAlim.Add(new AlimentStruct("Viande", meat.GetComponent<SpriteRenderer>().sprite));
-        listOfAlim.Add(new AlimentStruct("Fruit", fruit.GetComponent<SpriteRenderer>().sprite));
+
+        int recette = Random.Range(1, 4);
+
+        if(recette == 1)
+        {
+            laRecette = "Plat de résistance";
+            listOfAlim.Add(new AlimentStruct("Légume", legume.GetComponent<SpriteRenderer>().sprite));
+            listOfAlim.Add(new AlimentStruct("Poisson", fish.GetComponent<SpriteRenderer>().sprite));
+            listOfAlim.Add(new AlimentStruct("Viande", meat.GetComponent<SpriteRenderer>().sprite));
+            //listOfAlim.Add(new AlimentStruct("Fruit", fruit.GetComponent<SpriteRenderer>().sprite));
+        }
+        if (recette == 2)
+        {
+            laRecette = "La mise en bouche";
+            listOfAlim.Add(new AlimentStruct("Huitre", huitre.GetComponent<SpriteRenderer>().sprite));
+            listOfAlim.Add(new AlimentStruct("Sushi", sushi.GetComponent<SpriteRenderer>().sprite));
+            listOfAlim.Add(new AlimentStruct("salade", salade.GetComponent<SpriteRenderer>().sprite));
+            //listOfAlim.Add(new AlimentStruct("licorne", licorne.GetComponent<SpriteRenderer>().sprite));
+        }
+        if (recette == 3)
+        {
+            laRecette = "Dessert dans l'désert";
+            listOfAlim.Add(new AlimentStruct("Glace", glace.GetComponent<SpriteRenderer>().sprite));
+            listOfAlim.Add(new AlimentStruct("Gateau", gateau.GetComponent<SpriteRenderer>().sprite));
+            listOfAlim.Add(new AlimentStruct("Fruit", fruit.GetComponent<SpriteRenderer>().sprite));
+        }
+
+        txt_laRecette.text = laRecette;
     }
     private void Awake()
     {
@@ -71,6 +102,7 @@ public class AlimentManager : MonoBehaviour
     {
         int goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
         Scoreboard.alimentToTake = listOfAlim[goodOne].Name;
+        Scoreboard.firstAliment = listOfAlim[goodOne].Name;
         Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
         Scoreboard.level = 1;
         Scoreboard.successToAchieve = 2;
@@ -97,7 +129,7 @@ public class AlimentManager : MonoBehaviour
             //int goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
            // while (listOfAlim[goodOne].Name == Scoreboard.alimentToTake)
            // {
-//goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
+            //goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
            // }
            // Scoreboard.alimentToTake = listOfAlim[goodOne].Name;
            // Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
@@ -107,7 +139,7 @@ public class AlimentManager : MonoBehaviour
         if(Scoreboard.sucessCounter == Scoreboard.successToAchieve)
         {
             int goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
-            while (listOfAlim[goodOne].Name == Scoreboard.alimentToTake)
+            while (listOfAlim[goodOne].Name == Scoreboard.alimentToTake || listOfAlim[goodOne].Name == Scoreboard.firstAliment)
             {
                 goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
             }
@@ -115,7 +147,7 @@ public class AlimentManager : MonoBehaviour
             Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
             Scoreboard.errorCounter = 0;
             Scoreboard.sucessCounter = 0;
-            if(Scoreboard.level <= 4)
+            if(Scoreboard.level < 4)
             Scoreboard.level++;
         }
 
@@ -140,7 +172,7 @@ public class AlimentManager : MonoBehaviour
         }
         if(Scoreboard.level == 4)
         {
-            Debug.Log("Problème sur l'incrémentation des levels zinedine");
+            Scoreboard.level = 42;
             nextGame.SetActive(true);
             
         }

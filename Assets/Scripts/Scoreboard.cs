@@ -7,6 +7,7 @@ public static class Scoreboard
     public static int totalScore = 0;
 
     // Relatif au mini-jeu numéro 1
+    public static string firstAliment;
     public static string alimentToTake;
     public static Sprite goodSprite;
     public static int successToAchieve;

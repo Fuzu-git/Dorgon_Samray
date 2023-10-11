@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
         
         NormalSpawning();
 
-        if(Scoreboard.level == 4)
+        if(Scoreboard.level > 3)
         {
             this.enabled = false;
         }
