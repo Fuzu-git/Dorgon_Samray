@@ -50,6 +50,84 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "ChangePow",
+            "id": "a4f64a85-48ec-4aaf-b549-558bf39f9b58",
+            "actions": [
+                {
+                    "name": "ChangePow",
+                    "type": "Value",
+                    "id": "07503667-adc3-4433-a026-793eaef115da",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "55b43fb5-3886-46e8-9082-6325a7eae592",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangePow",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "52c58ec2-f5f4-4f3b-8181-107d2011d1ba",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangePow",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "830ec72d-c1eb-411c-8231-ca69658f865e",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangePow",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "IncrementHeat",
+            "id": "51a8ed49-eacb-4511-b879-a8969c9c80cc",
+            "actions": [
+                {
+                    "name": "IncrementHeat",
+                    "type": "Value",
+                    "id": "128b2e30-fa59-4dea-98f3-0f992cbc40aa",
+                    "expectedControlType": "Key",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "db93c4c4-55cf-44c0-a439-0c8f06bd7a5d",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "IncrementHeat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
