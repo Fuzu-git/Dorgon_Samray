@@ -951,7 +951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118562fcf135e1c479eef23b9afdf298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Show: 0
+  Show: 1
   min: -0.07
   max: 0.07
   interpolater: 0
@@ -960,6 +960,19 @@ MonoBehaviour:
   palierOne: 0.33333334
   palierTwo: 0.6666667
   palierThree: 1
+  finished: 0
+  vit:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Vit
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a5edaa94-2297-4fa7-9906-76526a9b7f7b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -4514981268742406530, guid: d3bd2fe9004bd7347aca40d9d7de2253, type: 3}
   timer: {fileID: 1750426000}
   gordon: {fileID: 61122718}
   service: {fileID: 1584230710}
