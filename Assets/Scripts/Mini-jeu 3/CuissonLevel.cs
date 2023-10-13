@@ -32,7 +32,6 @@ public class CuissonLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timerTotalTime = 120f;
         interpolater = 0;
         palierOne = 1f / 3f;
         palierTwo = palierOne * 2;
@@ -43,7 +42,7 @@ public class CuissonLevel : MonoBehaviour
     {
         if (Scoreboard.totalTime >= 0)
         {
-            Scoreboard.totalTime = 60f - Time.time;
+            Scoreboard.totalTime = timerTotalTime - Time.time;
 
         }
         int timeLeft = ((int)Scoreboard.totalTime);

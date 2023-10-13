@@ -17,7 +17,7 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("show")] Sprite spriteOfNewAlim;
     [SerializeField, ShowIf("show")] GameObject alimentCol;
 
-    [SerializeField, ShowIf("show")] Vector3 velocityLevel = new Vector3(10,15,20) ;
+    [SerializeField] Vector3 velocityLevel = new Vector3(10,15,20) ;
 
     [Header("Les aliments")]
     [SerializeField, ShowIf("show")] GameObject legume;
@@ -124,7 +124,7 @@ public class AlimentManager : MonoBehaviour
 
     private void ErrorsAndSuccess()
     {
-        if (Scoreboard.errorCounter == 3)
+       /* if (Scoreboard.errorCounter == 3)
         {
             //int goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
            // while (listOfAlim[goodOne].Name == Scoreboard.alimentToTake)
@@ -133,9 +133,9 @@ public class AlimentManager : MonoBehaviour
            // }
            // Scoreboard.alimentToTake = listOfAlim[goodOne].Name;
            // Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
-            Scoreboard.errorCounter = 0;
-            Scoreboard.sucessCounter = 0;
-        }
+           // Scoreboard.errorCounter = 0;
+            //Scoreboard.sucessCounter = 0;
+        }*/
         if(Scoreboard.sucessCounter == Scoreboard.successToAchieve)
         {
             int goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);

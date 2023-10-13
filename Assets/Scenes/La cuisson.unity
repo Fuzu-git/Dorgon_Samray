@@ -951,11 +951,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118562fcf135e1c479eef23b9afdf298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Show: 1
+  Show: 0
   min: -0.07
   max: 0.07
   interpolater: 0
-  timerTotalTime: 0
+  timerTotalTime: 120
   totalNumberOfPush: 20
   palierOne: 0.33333334
   palierTwo: 0.6666667
