@@ -10,20 +10,17 @@ public class PowManager : MonoBehaviour
 {
 
     PlayerInput inputPow;
-    InputAction powAction;
+    [SerializeField]InputAction powAction;
     [Header("Relatif à la puissance")]
     // LE STATIC 
     public static int actualPower = 0;
-    [SerializeField] Vector2 changePow;
+    [SerializeField] Vector3 changePow;
     [Header("temps entre deux press")]
-    private float nextPressTime;
-    [SerializeField] float secondsBetweenTwoPress = 0;
     [Header("GameObjects")]
     [SerializeField] GameObject flèche;
     [SerializeField] GameObject levier;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         inputPow = GetComponent<PlayerInput>();
@@ -37,26 +34,27 @@ public class PowManager : MonoBehaviour
 
     void ChangePower()
     {
-         changePow = powAction.ReadValue<Vector2>();
-        if(Time.time > nextPressTime)
-        {
-            nextPressTime = Time.time + secondsBetweenTwoPress;
+         changePow = powAction.ReadValue<Vector3>();
             
-            if (changePow.y > 0 && actualPower < 3 )
+            if (changePow.x > 0)
             {                
-                actualPower++;
+                actualPower = 1;
                 Debug.Log(" actual power est " + actualPower);
-                flèche.transform.localPosition += new Vector3(180,0,0);
-                levier.GetComponent<SpriteRenderer>().flipX = false;
+                flèche.transform.position = new Vector3(120,475,0);
             }
-            if (changePow.y < 0 && actualPower > 1)
+            if (changePow.y > 0)
             {
-                actualPower--;
+                actualPower = 2;
                 Debug.Log(" actual power est " + actualPower);
-                flèche.transform.localPosition += new Vector3(-180, 0, 0);
-                levier.GetComponent<SpriteRenderer>().flipX = true;
+                flèche.transform.position = new Vector3(300, 475, 0);
             }
-        }
+            if (changePow.z > 0)
+            {
+                actualPower = 3;
+                Debug.Log(" actual power est " + actualPower);
+                flèche.transform.position = new Vector3(480, 475, 0);
+            }
+        
         
     }
 }

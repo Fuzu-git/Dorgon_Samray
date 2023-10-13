@@ -59,7 +59,7 @@
                     "name": "ChangePow",
                     "type": "Value",
                     "id": "07503667-adc3-4433-a026-793eaef115da",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -67,9 +67,9 @@
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
+                    "name": "3D Vector",
                     "id": "55b43fb5-3886-46e8-9082-6325a7eae592",
-                    "path": "2DVector",
+                    "path": "3DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -78,9 +78,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
+                    "name": "Up",
                     "id": "52c58ec2-f5f4-4f3b-8181-107d2011d1ba",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -89,9 +89,20 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
-                    "id": "830ec72d-c1eb-411c-8231-ca69658f865e",
-                    "path": "<Keyboard>/downArrow",
+                    "name": "right",
+                    "id": "225834a6-53a8-4243-a7e2-f3d3c36005cb",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangePow",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "forward",
+                    "id": "745e7e2d-1489-4895-97b7-708ce7f20969",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

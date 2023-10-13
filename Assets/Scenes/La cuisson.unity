@@ -1023,7 +1023,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press Enter To do the service
+  m_text: Reach the top to do the service
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1593,7 +1593,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -60, y: 475}
+  m_AnchoredPosition: {x: -41, y: 475}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1417132792
@@ -2292,8 +2292,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf8561bbb457654380a14609af5928d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changePow: {x: 0, y: 0}
-  secondsBetweenTwoPress: 1
+  powAction:
+    m_Name: Pow
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 04c5dfce-4a9e-4689-82dd-528489a6a629
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  changePow: {x: 0, y: 0, z: 0}
   "fl\xE8che": {fileID: 1417132790}
   levier: {fileID: 955509948}
 --- !u!4 &1812692823

@@ -16,6 +16,8 @@ public class CuissonLevel : MonoBehaviour
     [SerializeField, ShowIf("Show")] float palierOne;
     [SerializeField, ShowIf("Show")] float palierTwo;
     [SerializeField, ShowIf("Show")] float palierThree;
+    [SerializeField, ShowIf("Show")] bool finished = false;
+    [SerializeField, ShowIf("Show")] InputActionProperty vit;
 
     [Header("UI")]
     [SerializeField, ShowIf("Show")] TMP_Text timer;
@@ -25,9 +27,6 @@ public class CuissonLevel : MonoBehaviour
     public bool DebugOnly;
     [SerializeField, ShowIf("DebugOnly")] private float reduceHeatTimer;
 
-
-    //PlayerInput inputInc;
-    // [SerializeField]InputAction incAction;
 
     // Start is called before the first frame update
     void Start()
@@ -40,11 +39,15 @@ public class CuissonLevel : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Scoreboard.totalTime >= 0)
+        if (!finished)
         {
-            Scoreboard.totalTime = timerTotalTime - Time.time;
+            if (Scoreboard.totalTime >= 0)
+            {
+                Scoreboard.totalTime = timerTotalTime - Time.time;
 
+            }
         }
+        
         int timeLeft = ((int)Scoreboard.totalTime);
         timer.text = timeLeft.ToString();
     }
@@ -53,26 +56,37 @@ public class CuissonLevel : MonoBehaviour
     {
         transform.localPosition = new Vector3(0, Mathf.Lerp(max, min, interpolater), 0);
 
-        IncrementHeat();
-        Cooldown();
-
-        if(PowManager.actualPower == 3)
+        if(!finished)
         {
-            service.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Return))
+            IncrementHeat();
+            Cooldown();
+
+            if (PowManager.actualPower == 3)
             {
-                Debug.Log("Service !");
+                service.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    Debug.Log("Service !");
+                    Endgame();
+                }
+            }
+            else
+                service.SetActive(false);
+
+            if (Scoreboard.totalTime <= 0)
+            {
                 Endgame();
             }
+
+            if (interpolater >= 1)
+                Endgame();
+
         }
         else
-            service.SetActive(false);
-        
-        if(Scoreboard.totalTime <= 0)
         {
-            Endgame();
-        }
-        
+            Restart();
+        }      
+
     }
 
     void IncrementHeat()
@@ -98,6 +112,8 @@ public class CuissonLevel : MonoBehaviour
                 interpolater += (1 / totalNumberOfPush);
                 reduceHeatTimer = reduceJaugeTime;
             }
+
+            
         }
     }
 
@@ -117,6 +133,17 @@ public class CuissonLevel : MonoBehaviour
     void Endgame()
     {
         gordon.SetActive(true);
-        this.enabled = false;
+        finished = true;
+    }
+
+    private void Restart()
+    {
+        if (vit.action.ReadValue<Vector3>().x > 0)
+        {
+            Debug.Log("C'est reparti, au fourneau");
+            finished = false;
+            gordon.SetActive(false);
+            interpolater = 0;
+        }
     }
 }
