@@ -17,7 +17,8 @@ public class NoteSpawn : MonoBehaviour
     
     [SerializeField] private GameObject bonusNote; 
 
-    private Note _note; 
+    private Note _note;
+    [SerializeField] private BonusButton bonusButton; 
     
     private void Update()
     {
@@ -25,13 +26,19 @@ public class NoteSpawn : MonoBehaviour
         {
             StartCoroutine(RandomSpawnPoint());
         }
+
+        if (bonusButton.cutterNumberNoteBonus == 0)
+        {
+            bonusIsActive = false; 
+        }
     }
 
     IEnumerator RandomSpawnPoint()
     {
         Transform selectedSpawnPoint = spawnList[Random.Range(0, spawnList.Count)].transform;
-        if (bonusIsActive) {
+        if (bonusIsActive && bonusButton.cutterNumberNoteBonus > 0) {
             Instantiate(bonusNote, selectedSpawnPoint);
+            bonusButton.cutterNumberNoteBonus--;
         } else 
         {
             Instantiate(noteList[Random.Range(0, noteList.Count)], selectedSpawnPoint);

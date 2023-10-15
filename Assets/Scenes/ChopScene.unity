@@ -207,9 +207,10 @@ MonoBehaviour:
   - {fileID: 2878872521336476375, guid: cb6a23be7dfff9b479ea03343e7d8fe5, type: 3}
   - {fileID: 2878872521336476375, guid: da89fa89f71a5c347b95ef5556a8fcc1, type: 3}
   delta: 1
-  minDelta: 0.31
+  minDelta: 0.5
   bonusIsActive: 0
   bonusNote: {fileID: 2878872521336476375, guid: 72ff280232e8e8d41be9ed6dc134da0a, type: 3}
+  bonusButton: {fileID: 467836522}
 --- !u!1 &467836520
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +225,7 @@ GameObject:
   - component: {fileID: 467836523}
   - component: {fileID: 467836522}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BonusButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,6 +264,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteSpawn: {fileID: 390780080}
+  cutterNoteBonus: 0
+  cutterNumberNoteBonus: 7
 --- !u!114 &467836523
 MonoBehaviour:
   m_ObjectHideFlags: 0
