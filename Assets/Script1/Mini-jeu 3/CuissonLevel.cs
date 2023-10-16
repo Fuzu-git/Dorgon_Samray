@@ -26,6 +26,10 @@ public class CuissonLevel : MonoBehaviour
     [SerializeField] float reduceJaugeTime = 3f;
     public bool DebugOnly;
     [SerializeField, ShowIf("DebugOnly")] private float reduceHeatTimer;
+    [Header("Bonus")]
+    [SerializeField] public bool bonus3;
+    [SerializeField] private BonusButton _bonusButton;
+    public float remainingTimeBonus;
 
 
     // Start is called before the first frame update
@@ -47,6 +51,9 @@ public class CuissonLevel : MonoBehaviour
 
             }
         }
+
+        
+        
         
         int timeLeft = ((int)Scoreboard.totalTime);
         timer.text = timeLeft.ToString();
@@ -54,6 +61,11 @@ public class CuissonLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (bonus3)
+        {
+            remainingTimeBonus -=  Time.deltaTime;
+        }
+
         transform.localPosition = new Vector3(0, Mathf.Lerp(max, min, interpolater), 0);
 
         if(!finished)
@@ -85,35 +97,46 @@ public class CuissonLevel : MonoBehaviour
         else
         {
             Restart();
-        }      
+        }   
+            
+        if(remainingTimeBonus < 0)
+        {
+            bonus3 = false;
+        }
 
     }
 
     void IncrementHeat()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && interpolater <= 1)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && interpolater <= 1)
         {
-            
-            Debug.Log("ça incrémente");
-
-            // Je laisse les 3 if en prévision de si des différences s'opèrent dans le futur en fonction des paliers
-            if (PowManager.actualPower == 1 && interpolater <= palierOne)
+         
+            if(remainingTimeBonus > 0)
             {
-                interpolater += (1 / totalNumberOfPush);
+                interpolater += (2 / totalNumberOfPush);
                 reduceHeatTimer = reduceJaugeTime;
             }
-            if (PowManager.actualPower == 2 && interpolater <= palierTwo && interpolater >= palierOne)
+            else
             {
-                interpolater += (1 / totalNumberOfPush);
-                reduceHeatTimer = reduceJaugeTime;
+                // Je laisse les 3 if en prévision de si des différences s'opèrent dans le futur en fonction des paliers
+                if (PowManager.actualPower == 1 && interpolater <= palierOne)
+                {
+                    interpolater += (1 / totalNumberOfPush);
+                    reduceHeatTimer = reduceJaugeTime;
+                }
+                if (PowManager.actualPower == 2 && interpolater <= palierTwo && interpolater >= palierOne)
+                {
+                    interpolater += (1 / totalNumberOfPush);
+                    reduceHeatTimer = reduceJaugeTime;
+                }
+                if (PowManager.actualPower == 3 && interpolater <= palierThree && interpolater >= palierTwo)
+                {
+                    interpolater += (1 / totalNumberOfPush);
+                    reduceHeatTimer = reduceJaugeTime;
+                }
+                
             }
-            if (PowManager.actualPower == 3 && interpolater <= palierThree && interpolater >= palierTwo)
-            {
-                interpolater += (1 / totalNumberOfPush);
-                reduceHeatTimer = reduceJaugeTime;
-            }
-
-            
+                       
         }
     }
 

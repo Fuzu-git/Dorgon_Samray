@@ -9,21 +9,35 @@ public class AlimentCollision : MonoBehaviour
     [SerializeField] string alimentType;
     [SerializeField] public float velocity;
 
+    [Header("Bonus")]
+    [SerializeField] public bool bonus;
+    [SerializeField] private BonusButton _bonusButton;
+
     private void Awake()
     {
         if (AlimentManager.listOfAlim != null)
         {
-            if (spawner.countBetweenTwoCorrectAliment == spawner.CountBetweenTwoCorrectAlimentMax)
+            if (!bonus)
             {
-                Me = new AlimentStruct(Scoreboard.alimentToTake, Scoreboard.goodSprite);
-                spawner.countBetweenTwoCorrectAliment = 0;
-                Debug.Log("Système anti-malchance activé, countbetween est égal à " + spawner);
+                if (spawner.countBetweenTwoCorrectAliment == spawner.CountBetweenTwoCorrectAlimentMax)
+                {
+                    Me = new AlimentStruct(Scoreboard.alimentToTake, Scoreboard.goodSprite);
+                    spawner.countBetweenTwoCorrectAliment = 0;
+                    Debug.Log("Système anti-malchance activé, countbetween est égal à " + spawner);
+                }
+                else
+                {
+                    Me = AlimentManager.listOfAlim[Random.Range(0, AlimentManager.listOfAlim.Count)];
+
+                }
             }
             else
             {
-                Me = AlimentManager.listOfAlim[Random.Range(0, AlimentManager.listOfAlim.Count)];
+                Me = new AlimentStruct(Scoreboard.alimentToTake, Scoreboard.goodSprite);
+                _bonusButton.alimentBonus--;
 
             }
+            
             this.gameObject.GetComponent<SpriteRenderer>().sprite = Me.Sprite;
             this.alimentType = Me.Name;
 
@@ -37,8 +51,12 @@ public class AlimentCollision : MonoBehaviour
 
     private void Update()
     {
-
         transform.position += new Vector3(0, -1, 0) * velocity * Time.deltaTime;
+
+        if (_bonusButton.alimentBonus <= 0)
+        {
+            bonus = false;
+        }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

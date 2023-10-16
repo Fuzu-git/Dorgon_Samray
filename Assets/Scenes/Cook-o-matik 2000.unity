@@ -3267,7 +3267,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteSpawn: {fileID: 709198267}
+  alimentCol: {fileID: 1013869196}
+  cuissonLvl: {fileID: 2004417262}
   cutterNoteBonus: 0
+  alimentNumberNoteBonus: 5
+  remainingTime: 8
+  alimentBonus: 0
   cutterNumberNoteBonus: 7
 --- !u!114 &925859104
 MonoBehaviour:
@@ -3538,6 +3543,8 @@ MonoBehaviour:
   spawner: {fileID: 364351619}
   alimentType: 
   velocity: 10
+  bonus: 0
+  _bonusButton: {fileID: 925859103}
 --- !u!212 &1013869197
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6052,7 +6059,7 @@ GameObject:
   - component: {fileID: 1832589703}
   - component: {fileID: 1832589702}
   m_Layer: 5
-  m_Name: Canvas - Minigame2
+  m_Name: Canvas - Bonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6833,6 +6840,9 @@ MonoBehaviour:
   reduceJaugeTime: 3
   DebugOnly: 0
   reduceHeatTimer: 0
+  bonus3: 0
+  _bonusButton: {fileID: 925859103}
+  remainingTimeBonus: 0
 --- !u!212 &2004417263
 SpriteRenderer:
   m_ObjectHideFlags: 0
