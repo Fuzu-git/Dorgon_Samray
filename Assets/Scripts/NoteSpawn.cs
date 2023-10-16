@@ -27,7 +27,7 @@ public class NoteSpawn : MonoBehaviour
             StartCoroutine(RandomSpawnPoint());
         }
 
-        if (bonusButton.cutterNumberNoteBonus == 0)
+        if (bonusButton.cutterNoteBonus == 0)
         {
             bonusIsActive = false; 
         }
@@ -36,10 +36,12 @@ public class NoteSpawn : MonoBehaviour
     IEnumerator RandomSpawnPoint()
     {
         Transform selectedSpawnPoint = spawnList[Random.Range(0, spawnList.Count)].transform;
-        if (bonusIsActive && bonusButton.cutterNumberNoteBonus > 0) {
+        if (bonusButton.cutterNoteBonus > 0) 
+        {
             Instantiate(bonusNote, selectedSpawnPoint);
-            bonusButton.cutterNumberNoteBonus--;
-        } else 
+            bonusButton.cutterNoteBonus--;
+        } 
+        else 
         {
             Instantiate(noteList[Random.Range(0, noteList.Count)], selectedSpawnPoint);
         } 

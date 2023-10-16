@@ -15,8 +15,6 @@ public class Activator : MonoBehaviour
     private BonusNote _bonusNote;
     [SerializeField] private NoteSpawn noteSpawn;
 
-    //[SerializeField] private float bonusTime = 10f; 
-
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();

@@ -266,6 +266,8 @@ MonoBehaviour:
   noteSpawn: {fileID: 390780080}
   cutterNoteBonus: 0
   cutterNumberNoteBonus: 7
+  bonusCooldown: 5
+  thisButton: {fileID: 467836523}
 --- !u!114 &467836523
 MonoBehaviour:
   m_ObjectHideFlags: 0
