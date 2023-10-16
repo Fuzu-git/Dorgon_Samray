@@ -37,6 +37,7 @@ public class Activator : MonoBehaviour
                 StartCoroutine(Pressed());
                 if (active && !noteSpawn.bonusIsActive && key == _note.noteColor)
                 {
+                    Debug.Log("PIIOOOOOO");
                     Destroy(note);
                 }
 

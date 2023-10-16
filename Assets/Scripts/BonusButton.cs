@@ -25,7 +25,7 @@ public class BonusButton : MonoBehaviour
         {
             case 0:
                 alimentCol.bonus = true;
-                alimentBonus = alimentNumberNoteBonus; // remplacé chef :')
+                alimentBonus = alimentNumberNoteBonus;
                 Debug.Log("Bonus 1 - aliment");
                 break;
 
@@ -36,7 +36,7 @@ public class BonusButton : MonoBehaviour
                 break;
 
             case 2:
-                cuissonLvl.bonus3 = true;            //remplacé aussi
+                cuissonLvl.bonus3 = true;
                 cuissonLvl.remainingTimeBonus = remainingTime;
                 Debug.Log("Bonus 3 - jauge");
                 break;

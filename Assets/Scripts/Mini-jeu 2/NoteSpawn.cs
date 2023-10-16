@@ -41,7 +41,13 @@ public class NoteSpawn : MonoBehaviour
             bonusButton.cutterNumberNoteBonus--;
         } else 
         {
-            Instantiate(noteList[Random.Range(0, noteList.Count)], selectedSpawnPoint);
+            if (selectedSpawnPoint.gameObject == spawnList[0])
+            {
+                Instantiate(noteList[0], selectedSpawnPoint);
+            } else if (selectedSpawnPoint.gameObject == spawnList[1])
+            {
+                Instantiate(noteList[1], selectedSpawnPoint);
+            }
         } 
         _canSpawn = false;
         yield return new WaitForSeconds(delta);
