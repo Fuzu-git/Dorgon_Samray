@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AlimentCollision : MonoBehaviour
 {   
     [SerializeField] AlimentStruct Me;
+    [SerializeField] AlimentManager alimentManager;
     [SerializeField] Spawner spawner;
     [SerializeField] string alimentType;
     [SerializeField] public float velocity;
@@ -15,7 +17,7 @@ public class AlimentCollision : MonoBehaviour
 
     private void Awake()
     {
-        if (AlimentManager.listOfAlim != null)
+        if (alimentManager.listOfAlim != null)
         {
             if (!bonus)
             {
@@ -23,11 +25,11 @@ public class AlimentCollision : MonoBehaviour
                 {
                     Me = new AlimentStruct(Scoreboard.alimentToTake, Scoreboard.goodSprite);
                     spawner.countBetweenTwoCorrectAliment = 0;
-                    Debug.Log("Système anti-malchance activé, countbetween est égal à " + spawner);
+                    //Debug.Log("Système anti-malchance activé, countbetween est égal à " + spawner);
                 }
                 else
                 {
-                    Me = AlimentManager.listOfAlim[Random.Range(0, AlimentManager.listOfAlim.Count)];
+                    Me = alimentManager.listOfAlim[Random.Range(0, alimentManager.listOfAlim.Count)];
 
                 }
             }
@@ -64,14 +66,14 @@ public class AlimentCollision : MonoBehaviour
         {
             if(Me.Name == Scoreboard.alimentToTake)
             {
-                Debug.Log("Bien vu chacal");
+               //Debug.Log("Bien vu chacal");
                 Scoreboard.totalScore++;
                 Scoreboard.sucessCounter++;
                 Destroy(gameObject);
             }
             else
             {
-                Debug.Log("Noublard");
+               //Debug.Log("Noublard");
                 Scoreboard.errorCounter++;
                 Destroy(gameObject);
             }
@@ -80,7 +82,7 @@ public class AlimentCollision : MonoBehaviour
         {
             if(Me.Name == Scoreboard.alimentToTake)
             {
-                Debug.Log("T'auras jamais la recette !");
+               //Debug.Log("T'auras jamais la recette !");
                 Scoreboard.rates++;
                 Scoreboard.errorCounter++;
             }

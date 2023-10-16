@@ -1620,10 +1620,11 @@ MonoBehaviour:
   alimentCollision: {fileID: 1013869196}
   numberOfSpawns: 0
   inProgress: 0
+  canSpawn: 0
   multiplier: 0.25
   spawnAngleMax: 30
   spawnSizeMinMax: {x: 0.05, y: 0.05}
-  countBetweenTwoCorrectAlimentMax: 4
+  countBetweenTwoCorrectAlimentMax: 0
   countBetweenTwoCorrectAliment: 0
   secondsBetweenSpawnsMinMax: {x: 1, y: 1}
   spawnPositionModifier: {x: 5, y: 0}
@@ -2651,7 +2652,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709198266}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542bb5b1297755469576697a7ef918d, type: 3}
   m_Name: 
@@ -2990,7 +2991,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2bfa361734240c4c831df8791fb23ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laRecette: 
+  timeUntilNextRecette: 5
+  nextGame: 0
+  processing: 0
   show: 1
   nameOfNewAlim: "l\xE9gume"
   spriteOfNewAlim: {fileID: 21300000, guid: f655791bc04a08e45851e35f3a2aae93, type: 3}
@@ -3013,7 +3016,9 @@ MonoBehaviour:
   txt_success: {fileID: 1590929594}
   txt_laRecette: {fileID: 1836119998}
   img_alimentTake: {fileID: 1646942863}
-  nextGame: {fileID: 359178494}
+  noteSpawn: {fileID: 709198267}
+  spawner: {fileID: 364351619}
+  rouage: {fileID: 21300000, guid: bf204857d309d844b930961d0d401eeb, type: 3}
 --- !u!212 &870240360
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3540,6 +3545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a18b1a08173ccc48be2fe149f600be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alimentManager: {fileID: 870240359}
   spawner: {fileID: 364351619}
   alimentType: 
   velocity: 10

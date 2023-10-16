@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using Random = UnityEngine.Random;
 
 
 public class Spawner : MonoBehaviour
@@ -17,8 +18,8 @@ public class Spawner : MonoBehaviour
 
     [Header("Booleans")]
     [SerializeField] bool inProgress;
+    [SerializeField] public bool canSpawn;
 
-    float nextSpawnTime;
 
     [Header("Largeur du spawner = largeur de l'écran x le multiplier")]
     [SerializeField] float multiplier = 1;
@@ -27,17 +28,18 @@ public class Spawner : MonoBehaviour
     [SerializeField, ShowIf("show")]  float spawnAngleMax;
     [SerializeField, ShowIf("show")]  Vector2 spawnSizeMinMax;
 
-    // Trifouille la RNG
     [Header("int anti malchance")]
     [SerializeField, ShowIf("show")] int countBetweenTwoCorrectAlimentMax = 4;
     [SerializeField, ShowIf("show")] public int countBetweenTwoCorrectAliment = 0;
+
     [Header("CD de spawn minimal et maximal")]
     [SerializeField] Vector2 secondsBetweenSpawnsMinMax;
+    float nextSpawnTime;
 
-
-    Vector2 screenHalfSizeWorldUnits;
     [Header("SpawnPosition")]
+    Vector2 screenHalfSizeWorldUnits;
     [SerializeField] Vector2 spawnPositionModifier;
+
 
     [Header("Gizmos")]
     private Vector2 spawnPosition;
@@ -48,6 +50,7 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
+        canSpawn = true;
         // Largeur du spawner ( largeur d'écran x multiplicateur ) 
         screenHalfSizeWorldUnits = new Vector2(Camera.main.aspect * Camera.main.orthographicSize * multiplier, Camera.main.orthographicSize);
         spawner.transform.localScale = new Vector3(1, spawner.transform.localScale.y * multiplier, 1);
@@ -56,14 +59,8 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
-        
-        NormalSpawning();
-
-        if(Scoreboard.level > 3)
-        {
-            this.enabled = false;
-        }
-        
+        if(canSpawn)
+        NormalSpawning();       
     }
 
     public void NormalSpawning()

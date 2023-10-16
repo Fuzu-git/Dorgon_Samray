@@ -4,13 +4,19 @@ using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.UI;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class AlimentManager : MonoBehaviour
 {
     
-    public static List<AlimentStruct> listOfAlim;
-    [SerializeField] string laRecette;
+    public List<AlimentStruct> listOfAlim;
+    string laRecette;
+    [SerializeField] float timeUntilNextRecette;
 
+    [Header("Booleans")]
+    [SerializeField,] bool nextGame;
+    [SerializeField,] bool processing;
+    private bool uiassign;
     public bool show;
     [Header("Propriétés de l'aliment à ajouter")]
     [SerializeField, ShowIf("show")] string nameOfNewAlim;
@@ -40,8 +46,13 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_success;
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_laRecette;
     [SerializeField, ShowIf("ShowUI")] Image img_alimentTake;
-    [SerializeField, ShowIf("ShowUI")] GameObject nextGame;
 
+    [Header("Refs à d'autres scripts")]
+    [SerializeField, ShowIf("show")] NoteSpawn noteSpawn;
+    [SerializeField, ShowIf("show")] Spawner spawner;
+    [SerializeField] Sprite rouage;
+
+    #region debug+addalim
     [Button]
     public void AddAliment()
     {
@@ -59,6 +70,10 @@ public class AlimentManager : MonoBehaviour
             
         Debug.Log(listOfAlim.Count);
     }
+
+    #endregion
+
+    #region InitialisationDeRecette
     public void IniatizeListOfAlim()
     {
         if (listOfAlim != null)
@@ -73,7 +88,6 @@ public class AlimentManager : MonoBehaviour
             listOfAlim.Add(new AlimentStruct("Légume", legume.GetComponent<SpriteRenderer>().sprite));
             listOfAlim.Add(new AlimentStruct("Poisson", fish.GetComponent<SpriteRenderer>().sprite));
             listOfAlim.Add(new AlimentStruct("Viande", meat.GetComponent<SpriteRenderer>().sprite));
-            //listOfAlim.Add(new AlimentStruct("Fruit", fruit.GetComponent<SpriteRenderer>().sprite));
         }
         if (recette == 2)
         {
@@ -81,7 +95,6 @@ public class AlimentManager : MonoBehaviour
             listOfAlim.Add(new AlimentStruct("Huitre", huitre.GetComponent<SpriteRenderer>().sprite));
             listOfAlim.Add(new AlimentStruct("Sushi", sushi.GetComponent<SpriteRenderer>().sprite));
             listOfAlim.Add(new AlimentStruct("salade", salade.GetComponent<SpriteRenderer>().sprite));
-            //listOfAlim.Add(new AlimentStruct("licorne", licorne.GetComponent<SpriteRenderer>().sprite));
         }
         if (recette == 3)
         {
@@ -93,6 +106,7 @@ public class AlimentManager : MonoBehaviour
 
         txt_laRecette.text = laRecette;
     }
+    #endregion
     private void Awake()
     {
         IniatizeListOfAlim();     
@@ -100,48 +114,78 @@ public class AlimentManager : MonoBehaviour
 
     private void Start()
     {
-        int goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
+        uiassign = true;
+        AlimentToTake();
+    }
+
+    private void Update()
+    {
+        if (uiassign)
+            UIAssignation();
+        else
+            return;
+
+        if (!processing) 
+        {
+            ErrorsAndSuccess();
+            Difficulty();
+            
+        }
+        
+
+        if (nextGame)
+        {
+            noteSpawn.enabled = true;
+        }
+
+        if (processing)
+        {
+            txt_laRecette.text = "En cours de traitement...";
+            StartCoroutine(Processing());
+        }
+
+    }
+    IEnumerator Processing()
+    {
+        spawner.canSpawn = false;
+        listOfAlim = null;
+        processing = false;
+        uiassign = false;
+        img_alimentTake.sprite = rouage;
+        yield return new WaitForSeconds(timeUntilNextRecette);
+        IniatizeListOfAlim() ;       
+        AlimentToTake();
+        spawner.canSpawn = true;
+        uiassign = true;
+    }
+    private void AlimentToTake()
+    {
+        int goodOne = Random.Range(0,listOfAlim.Count);
         Scoreboard.alimentToTake = listOfAlim[goodOne].Name;
         Scoreboard.firstAliment = listOfAlim[goodOne].Name;
         Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
         Scoreboard.level = 1;
         Scoreboard.successToAchieve = 2;
-        Debug.Log("L'aliment à prendre est :" + Scoreboard.alimentToTake);
+        //Debug.Log("L'aliment à prendre est :" + Scoreboard.alimentToTake);
     }
-
-    private void Update()
+    private void UIAssignation()
     {
         txt_errors.text = Scoreboard.errorCounter.ToString();
         txt_scoring.text = Scoreboard.totalScore.ToString();
-        txt_rate.text = Scoreboard.rates.ToString();     
+        txt_rate.text = Scoreboard.rates.ToString();
         txt_level.text = Scoreboard.level.ToString();
         txt_success.text = Scoreboard.sucessCounter.ToString();
         img_alimentTake.sprite = Scoreboard.goodSprite;
-
-        ErrorsAndSuccess();
-        Difficulty();
     }
 
     private void ErrorsAndSuccess()
-    {
-       /* if (Scoreboard.errorCounter == 3)
-        {
-            //int goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
-           // while (listOfAlim[goodOne].Name == Scoreboard.alimentToTake)
-           // {
-            //goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
-           // }
-           // Scoreboard.alimentToTake = listOfAlim[goodOne].Name;
-           // Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
-           // Scoreboard.errorCounter = 0;
-            //Scoreboard.sucessCounter = 0;
-        }*/
+    {     
         if(Scoreboard.sucessCounter == Scoreboard.successToAchieve)
         {
-            int goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
+            int goodOne = Random.Range(0, listOfAlim.Count);
             while (listOfAlim[goodOne].Name == Scoreboard.alimentToTake || listOfAlim[goodOne].Name == Scoreboard.firstAliment)
             {
-                goodOne = Random.Range(0, AlimentManager.listOfAlim.Count);
+                goodOne = Random.Range(0, listOfAlim.Count);
             }
             Scoreboard.alimentToTake = listOfAlim[goodOne].Name;
             Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
@@ -152,7 +196,6 @@ public class AlimentManager : MonoBehaviour
         }
 
     }
-
     private void Difficulty()
     {
         if(Scoreboard.level == 1)
@@ -172,12 +215,17 @@ public class AlimentManager : MonoBehaviour
         }
         if(Scoreboard.level == 4)
         {
-            Scoreboard.level = 42;
-            nextGame.SetActive(true);
-            
+            Scoreboard.level = 0;
+            if(!nextGame)
+            nextGame = true;
+
+            processing = true;
+            alimentCol.GetComponent<AlimentCollision>().velocity = velocityLevel.x;
         }
     }
 }
+
+
 
 public class AlimentStruct
 {
