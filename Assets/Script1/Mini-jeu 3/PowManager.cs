@@ -19,6 +19,9 @@ public class PowManager : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] GameObject flèche;
     [SerializeField] GameObject levier;
+    [SerializeField] GameObject goPos1;
+    [SerializeField] GameObject goPos2;
+    [SerializeField] GameObject goPos3;
 
 
     void Start()
@@ -40,20 +43,20 @@ public class PowManager : MonoBehaviour
             {                
                 actualPower = 1;
                 Debug.Log(" actual power est " + actualPower);
-                flèche.transform.position = new Vector3(120,475,0);
-            }
+                flèche.transform.position = goPos1.transform.position;
+        }
             if (changePow.y > 0)
             {
                 actualPower = 2;
                 Debug.Log(" actual power est " + actualPower);
-                flèche.transform.position = new Vector3(300, 475, 0);
-            }
+                flèche.transform.position = goPos2.transform.position;
+        }
             if (changePow.z > 0)
             {
                 actualPower = 3;
                 Debug.Log(" actual power est " + actualPower);
-                flèche.transform.position = new Vector3(480, 475, 0);
-            }
+                flèche.transform.position = goPos3.transform.position;
+        }
         
         
     }

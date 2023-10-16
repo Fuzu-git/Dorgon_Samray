@@ -34,10 +34,15 @@ public class Spawner : MonoBehaviour
     [Header("CD de spawn minimal et maximal")]
     [SerializeField] Vector2 secondsBetweenSpawnsMinMax;
 
-    private Vector2 spawnPosition;
-
 
     Vector2 screenHalfSizeWorldUnits;
+    [Header("SpawnPosition")]
+    [SerializeField] Vector2 spawnPositionModifier;
+
+    [Header("Gizmos")]
+    private Vector2 spawnPosition;
+    [SerializeField] Vector2 spawnPositionMax;
+    [SerializeField] Vector2 spawnPositionMin;
 
     public int CountBetweenTwoCorrectAlimentMax { get => countBetweenTwoCorrectAlimentMax; }
 
@@ -71,7 +76,9 @@ public class Spawner : MonoBehaviour
 
             float spawnSize = Random.Range(spawnSizeMinMax.x, spawnSizeMinMax.y);
             spawnPosition = new Vector2(Random.Range(-screenHalfSizeWorldUnits.x, screenHalfSizeWorldUnits.x), screenHalfSizeWorldUnits.y + spawnSize);
-            alimentClone = (GameObject)Instantiate(aliment, spawnPosition, Quaternion.Euler(Vector3.forward));
+            spawnPositionMax = new Vector2( screenHalfSizeWorldUnits.x, screenHalfSizeWorldUnits.y + spawnSize);
+            spawnPositionMin = new Vector2( -screenHalfSizeWorldUnits.x, screenHalfSizeWorldUnits.y + spawnSize);
+            alimentClone = (GameObject)Instantiate(aliment, spawnPosition - spawnPositionModifier, Quaternion.Euler(Vector3.forward));
 
             numberOfSpawns++;
             alimentClone.transform.localScale = Vector2.one * spawnSize;
@@ -79,5 +86,9 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(spawnPositionMin - spawnPositionModifier, spawnPositionMax - spawnPositionModifier);
+    }
 }
