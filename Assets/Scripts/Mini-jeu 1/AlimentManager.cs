@@ -8,16 +8,22 @@ using Random = UnityEngine.Random;
 
 public class AlimentManager : MonoBehaviour
 {
+    public bool show;
+    public bool ShowUI;
     
     public List<AlimentStruct> listOfAlim;
     string laRecette;
     [SerializeField] float timeUntilNextRecette;
 
     [Header("Booleans")]
-    [SerializeField,] bool nextGame;
-    [SerializeField,] bool processing;
+    [SerializeField] bool nextGame;
+    [SerializeField] bool processing;
     private bool uiassign;
-    public bool show;
+    [SerializeField] int nbOfSucc1;
+    [SerializeField] int nbOfSucc2;
+    [SerializeField] int nbOfSucc3;
+    [Header("int")]
+
     [Header("Propriétés de l'aliment à ajouter")]
     [SerializeField, ShowIf("show")] string nameOfNewAlim;
     [SerializeField, ShowIf("show")] Sprite spriteOfNewAlim;
@@ -37,7 +43,6 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("show")] GameObject huitre;
     //[SerializeField, ShowIf("show")] GameObject licorne;
 
-    public bool ShowUI;
     [Header("UI relatif")]
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_scoring;
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_errors;
@@ -200,17 +205,17 @@ public class AlimentManager : MonoBehaviour
     {
         if(Scoreboard.level == 1)
         {
-            Scoreboard.successToAchieve = 2;
+            Scoreboard.successToAchieve = nbOfSucc1;
             alimentCol.GetComponent<AlimentCollision>().velocity = velocityLevel.x;
         }
         if (Scoreboard.level == 2)
         {
-            Scoreboard.successToAchieve = 3;
+            Scoreboard.successToAchieve = nbOfSucc2;
             alimentCol.GetComponent<AlimentCollision>().velocity = velocityLevel.y;
         }
         if (Scoreboard.level == 3)
         {
-            Scoreboard.successToAchieve = 5;
+            Scoreboard.successToAchieve = nbOfSucc3;
             alimentCol.GetComponent<AlimentCollision>().velocity = velocityLevel.z;
         }
         if(Scoreboard.level == 4)

@@ -2991,10 +2991,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2bfa361734240c4c831df8791fb23ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  show: 1
+  ShowUI: 1
   timeUntilNextRecette: 5
   nextGame: 0
   processing: 0
-  show: 1
+  nbOfSucc1: 1
+  nbOfSucc2: 1
+  nbOfSucc3: 1
   nameOfNewAlim: "l\xE9gume"
   spriteOfNewAlim: {fileID: 21300000, guid: f655791bc04a08e45851e35f3a2aae93, type: 3}
   alimentCol: {fileID: 1013869195}
@@ -3008,7 +3012,6 @@ MonoBehaviour:
   salade: {fileID: 1393477539}
   sushi: {fileID: 2056550107}
   huitre: {fileID: 895578416}
-  ShowUI: 1
   txt_scoring: {fileID: 1450590835}
   txt_errors: {fileID: 1997791947}
   txt_rate: {fileID: 344981482}
