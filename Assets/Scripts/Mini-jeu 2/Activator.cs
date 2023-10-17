@@ -15,7 +15,9 @@ public class Activator : MonoBehaviour
     private BonusNote _bonusNote;
     [SerializeField] private NoteSpawn noteSpawn;
 
-    public int score2 = 0;
+    
+    [HideInInspector] public int score2 = 0;
+    [SerializeField] private int numberToNextLevel; 
 
     [SerializeField]
     private PowManager powManager;
@@ -43,17 +45,19 @@ public class Activator : MonoBehaviour
                 {
                     Destroy(note);
                     score2++;
+                    Scoreboard.totalScore += score2; 
                 }
 
                 if (active && noteSpawn.bonusIsActive)
                 {
                     Destroy(note);
                     score2++;
+                    Scoreboard.totalScore += score2; 
                 }
             }
         }
         
-        if (score2 % 10 == 0 && score2 != 0)
+        if (score2 % numberToNextLevel == 0 && score2 != 0)
         {
             powManager.enabled = true;
             cuissonLevel.enabled = true; 

@@ -9,6 +9,8 @@ public class NoteSpawn : MonoBehaviour
     public List<GameObject> spawnList = new();
     public List<GameObject> noteList = new();
 
+    public List<AlimentStruct> ThisRecette = new(); 
+
     [SerializeField] private float delta = 2;
     [SerializeField] private float minDelta = 0.31f;
     private bool _canSpawn = true;

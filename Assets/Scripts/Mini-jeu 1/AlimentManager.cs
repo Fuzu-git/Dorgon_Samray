@@ -141,6 +141,7 @@ public class AlimentManager : MonoBehaviour
         if (nextGame)
         {
             noteSpawn.enabled = true;
+            noteSpawn.ThisRecette = listOfAlim; 
         }
 
         if (processing)
