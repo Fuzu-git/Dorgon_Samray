@@ -15,7 +15,11 @@ public class Activator : MonoBehaviour
     private BonusNote _bonusNote;
     [SerializeField] private NoteSpawn noteSpawn;
 
-    //[SerializeField] private float bonusTime = 10f; 
+    public int score2 = 0;
+
+    [SerializeField]
+    private PowManager powManager;
+    [SerializeField] private CuissonLevel cuissonLevel; 
 
     void Awake()
     {
@@ -37,15 +41,22 @@ public class Activator : MonoBehaviour
                 StartCoroutine(Pressed());
                 if (active && !noteSpawn.bonusIsActive && key == _note.noteColor)
                 {
-                    Debug.Log("PIIOOOOOO");
                     Destroy(note);
+                    score2++;
                 }
 
                 if (active && noteSpawn.bonusIsActive)
                 {
                     Destroy(note);
+                    score2++;
                 }
             }
+        }
+        
+        if (score2 % 10 == 0 && score2 != 0)
+        {
+            powManager.enabled = true;
+            cuissonLevel.enabled = true; 
         }
     }
 

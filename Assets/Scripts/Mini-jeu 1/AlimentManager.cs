@@ -24,7 +24,7 @@ public class AlimentManager : MonoBehaviour
     [SerializeField] int nbOfSucc3;
     [Header("int")]
 
-    [Header("Propriétés de l'aliment à ajouter")]
+    [Header("PropriÃ©tÃ©s de l'aliment Ã  ajouter")]
     [SerializeField, ShowIf("show")] string nameOfNewAlim;
     [SerializeField, ShowIf("show")] Sprite spriteOfNewAlim;
     [SerializeField, ShowIf("show")] GameObject alimentCol;
@@ -52,7 +52,7 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_laRecette;
     [SerializeField, ShowIf("ShowUI")] Image img_alimentTake;
 
-    [Header("Refs à d'autres scripts")]
+    [Header("Refs Ã  d'autres scripts")]
     [SerializeField, ShowIf("show")] NoteSpawn noteSpawn;
     [SerializeField, ShowIf("show")] Spawner spawner;
     [SerializeField] Sprite rouage;
@@ -89,8 +89,8 @@ public class AlimentManager : MonoBehaviour
 
         if(recette == 1)
         {
-            laRecette = "Plat de résistance";
-            listOfAlim.Add(new AlimentStruct("Légume", legume.GetComponent<SpriteRenderer>().sprite));
+            laRecette = "Plat de rÃ©sistance";
+            listOfAlim.Add(new AlimentStruct("LÃ©gume", legume.GetComponent<SpriteRenderer>().sprite));
             listOfAlim.Add(new AlimentStruct("Poisson", fish.GetComponent<SpriteRenderer>().sprite));
             listOfAlim.Add(new AlimentStruct("Viande", meat.GetComponent<SpriteRenderer>().sprite));
         }
@@ -103,7 +103,7 @@ public class AlimentManager : MonoBehaviour
         }
         if (recette == 3)
         {
-            laRecette = "Dessert dans l'désert";
+            laRecette = "Dessert dans l'dÃ©sert";
             listOfAlim.Add(new AlimentStruct("Glace", glace.GetComponent<SpriteRenderer>().sprite));
             listOfAlim.Add(new AlimentStruct("Gateau", gateau.GetComponent<SpriteRenderer>().sprite));
             listOfAlim.Add(new AlimentStruct("Fruit", fruit.GetComponent<SpriteRenderer>().sprite));
@@ -171,7 +171,7 @@ public class AlimentManager : MonoBehaviour
         Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
         Scoreboard.level = 1;
         Scoreboard.successToAchieve = 2;
-        //Debug.Log("L'aliment à prendre est :" + Scoreboard.alimentToTake);
+        //Debug.Log("L'aliment Ã  prendre est :" + Scoreboard.alimentToTake);
     }
     private void UIAssignation()
     {

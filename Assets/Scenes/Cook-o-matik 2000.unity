@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306937325}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cf8561bbb457654380a14609af5928d, type: 3}
   m_Name: 
@@ -5662,6 +5662,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 709198267}
     - target: {fileID: 3559636678661779360, guid: d1e89c1f4f15dcb429879dae10c72c65, type: 3}
+      propertyPath: powManager
+      value: 
+      objectReference: {fileID: 306937328}
+    - target: {fileID: 3559636678661779360, guid: d1e89c1f4f15dcb429879dae10c72c65, type: 3}
+      propertyPath: cuissonLevel
+      value: 
+      objectReference: {fileID: 2004417262}
+    - target: {fileID: 3559636678661779360, guid: d1e89c1f4f15dcb429879dae10c72c65, type: 3}
       propertyPath: keyList.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -6816,7 +6824,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004417260}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 118562fcf135e1c479eef23b9afdf298, type: 3}
   m_Name: 
