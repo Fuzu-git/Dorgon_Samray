@@ -20,8 +20,17 @@ public class NoteSpawn : MonoBehaviour
     [SerializeField] private GameObject bonusNote; 
 
     private Note _note;
-    [SerializeField] private BonusButton bonusButton; 
-    
+    [SerializeField] private BonusButton bonusButton;
+
+    private void Start()
+    {
+        for (int i = 0; i < noteList.Count; i++)
+        {
+            noteList[i].GetComponent<SpriteRenderer>().sprite = ThisRecette[i].Sprite;
+        }
+        bonusNote.GetComponent<SpriteRenderer>().sprite = ThisRecette[2].Sprite;
+    }
+
     private void Update()
     {
         if (_canSpawn)
