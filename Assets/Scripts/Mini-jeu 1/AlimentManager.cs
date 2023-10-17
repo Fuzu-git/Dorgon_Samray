@@ -24,7 +24,7 @@ public class AlimentManager : MonoBehaviour
     [SerializeField] int nbOfSucc3;
     [Header("int")]
 
-    [Header("PropriÃ©tÃ©s de l'aliment Ã  ajouter")]
+    [Header("Propriétés de l'aliment à ajouter")]
     [SerializeField, ShowIf("show")] string nameOfNewAlim;
     [SerializeField, ShowIf("show")] Sprite spriteOfNewAlim;
     [SerializeField, ShowIf("show")] GameObject alimentCol;
@@ -32,15 +32,15 @@ public class AlimentManager : MonoBehaviour
     [SerializeField] Vector3 velocityLevel = new Vector3(10,15,20) ;
 
     [Header("Les aliments")]
-    [SerializeField, ShowIf("show")] GameObject legume;
-    [SerializeField, ShowIf("show")] GameObject meat;
-    [SerializeField, ShowIf("show")] GameObject fish;
-    [SerializeField, ShowIf("show")] GameObject fruit;
-    [SerializeField, ShowIf("show")] GameObject gateau;
-    [SerializeField, ShowIf("show")] GameObject glace;
-    [SerializeField, ShowIf("show")] GameObject salade;
-    [SerializeField, ShowIf("show")] GameObject sushi;
-    [SerializeField, ShowIf("show")] GameObject huitre;
+    [SerializeField, ShowIf("show")] Sprite licorne;
+    [SerializeField, ShowIf("show")] Sprite serpent;
+    [SerializeField, ShowIf("show")] Sprite pomme;
+    [SerializeField, ShowIf("show")] Sprite basilic;
+    [SerializeField, ShowIf("show")] Sprite champignon;
+    [SerializeField, ShowIf("show")] Sprite dragon;
+    [SerializeField, ShowIf("show")] Sprite gobelin;
+    [SerializeField, ShowIf("show")] Sprite haricots;
+    [SerializeField, ShowIf("show")] Sprite scarabée;
     //[SerializeField, ShowIf("show")] GameObject licorne;
 
     [Header("UI relatif")]
@@ -52,7 +52,7 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_laRecette;
     [SerializeField, ShowIf("ShowUI")] Image img_alimentTake;
 
-    [Header("Refs Ã  d'autres scripts")]
+    [Header("Refs à d'autres scripts")]
     [SerializeField, ShowIf("show")] NoteSpawn noteSpawn;
     [SerializeField, ShowIf("show")] Spawner spawner;
     [SerializeField] Sprite rouage;
@@ -89,24 +89,24 @@ public class AlimentManager : MonoBehaviour
 
         if(recette == 1)
         {
-            laRecette = "Plat de rÃ©sistance";
-            listOfAlim.Add(new AlimentStruct("LÃ©gume", legume.GetComponent<SpriteRenderer>().sprite));
-            listOfAlim.Add(new AlimentStruct("Poisson", fish.GetComponent<SpriteRenderer>().sprite));
-            listOfAlim.Add(new AlimentStruct("Viande", meat.GetComponent<SpriteRenderer>().sprite));
+            laRecette = "Boulettes de Licorne façon pêché originel";
+            listOfAlim.Add(new AlimentStruct("Tête de Licorne", licorne));
+            listOfAlim.Add(new AlimentStruct("Pomme d'Eden", pomme));
+            listOfAlim.Add(new AlimentStruct("Serpent en spaghetti", serpent));
         }
         if (recette == 2)
         {
-            laRecette = "La mise en bouche";
-            listOfAlim.Add(new AlimentStruct("Huitre", huitre.GetComponent<SpriteRenderer>().sprite));
-            listOfAlim.Add(new AlimentStruct("Sushi", sushi.GetComponent<SpriteRenderer>().sprite));
-            listOfAlim.Add(new AlimentStruct("salade", salade.GetComponent<SpriteRenderer>().sprite));
+            laRecette = "Steak de Scarabée et ses délices magiques";
+            listOfAlim.Add(new AlimentStruct("Scarabée", scarabée));
+            listOfAlim.Add(new AlimentStruct("Haricots magiques", haricots));
+            listOfAlim.Add(new AlimentStruct("Jus d'oeil de Gobelin", gobelin));
         }
         if (recette == 3)
         {
-            laRecette = "Dessert dans l'dÃ©sert";
-            listOfAlim.Add(new AlimentStruct("Glace", glace.GetComponent<SpriteRenderer>().sprite));
-            listOfAlim.Add(new AlimentStruct("Gateau", gateau.GetComponent<SpriteRenderer>().sprite));
-            listOfAlim.Add(new AlimentStruct("Fruit", fruit.GetComponent<SpriteRenderer>().sprite));
+            laRecette = "Ramen Bajiru-Tatsu";
+            listOfAlim.Add(new AlimentStruct("Cuisse de Dragon", dragon));
+            listOfAlim.Add(new AlimentStruct("Champignon", champignon));
+            listOfAlim.Add(new AlimentStruct("Sang de Basilic", basilic));
         }
 
         txt_laRecette.text = laRecette;
@@ -171,7 +171,7 @@ public class AlimentManager : MonoBehaviour
         Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
         Scoreboard.level = 1;
         Scoreboard.successToAchieve = 2;
-        //Debug.Log("L'aliment Ã  prendre est :" + Scoreboard.alimentToTake);
+        //Debug.Log("L'aliment à prendre est :" + Scoreboard.alimentToTake);
     }
     private void UIAssignation()
     {

@@ -195,6 +195,37 @@ Transform:
   - {fileID: 1339220083}
   m_Father: {fileID: 870240358}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &73615390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 73615391}
+  m_Layer: 0
+  m_Name: limit1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &73615391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73615390}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -279.889, y: -241.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 540092469}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &77878918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,6 +1913,8 @@ Transform:
   - {fileID: 364351618}
   - {fileID: 779507414}
   - {fileID: 14574119}
+  - {fileID: 73615391}
+  - {fileID: 1021827501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &576447012
@@ -2714,7 +2747,7 @@ Transform:
   m_GameObject: {fileID: 779507413}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -276.92, y: -240.53, z: 5.487297}
+  m_LocalPosition: {x: -276.92, y: -240.53, z: 0}
   m_LocalScale: {x: 0.21999998, y: 0.21999998, z: 0.3142857}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2763,6 +2796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  firstLimit: {fileID: 73615390}
+  secondLimit: {fileID: 1021827500}
 --- !u!61 &779507417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3003,15 +3038,15 @@ MonoBehaviour:
   spriteOfNewAlim: {fileID: 21300000, guid: f655791bc04a08e45851e35f3a2aae93, type: 3}
   alimentCol: {fileID: 1013869195}
   velocityLevel: {x: 4, y: 6, z: 8}
-  legume: {fileID: 1037651330}
-  meat: {fileID: 77878918}
-  fish: {fileID: 802404820}
-  fruit: {fileID: 293974565}
-  gateau: {fileID: 1216231263}
-  glace: {fileID: 1843971742}
-  salade: {fileID: 1393477539}
-  sushi: {fileID: 2056550107}
-  huitre: {fileID: 895578416}
+  licorne: {fileID: 21300000, guid: c7508da82a445d347a3a9dcaa0275167, type: 3}
+  serpent: {fileID: 21300000, guid: f655791bc04a08e45851e35f3a2aae93, type: 3}
+  pomme: {fileID: 21300000, guid: 235a35534c39ec840b65388e2fb1d4e0, type: 3}
+  basilic: {fileID: 21300000, guid: 1136455c32342604181226f641948509, type: 3}
+  champignon: {fileID: 21300000, guid: 61620e62c81f0fe40b4c6202fc04d8e3, type: 3}
+  dragon: {fileID: 21300000, guid: e25ce8da26ec9d545b254ed57c0618ca, type: 3}
+  gobelin: {fileID: 21300000, guid: fe6a9087da8a11c42b7d9b745d2e7e87, type: 3}
+  haricots: {fileID: 21300000, guid: 3edfe316a49c5f848aa707a84481a935, type: 3}
+  "scarab\xE9e": {fileID: 21300000, guid: 4f5550c20180c7b47bbcd9fc5ccfc8c0, type: 3}
   txt_scoring: {fileID: 1450590835}
   txt_errors: {fileID: 1997791947}
   txt_rate: {fileID: 344981482}
@@ -3682,6 +3717,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 870240358}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1021827500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1021827501}
+  m_Layer: 0
+  m_Name: limit2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1021827501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021827500}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -273.68, y: -241.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 540092469}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1026584757
 GameObject:
