@@ -2685,7 +2685,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709198266}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542bb5b1297755469576697a7ef918d, type: 3}
   m_Name: 
@@ -2699,8 +2699,8 @@ MonoBehaviour:
   delta: 1
   minDelta: 0.5
   bonusIsActive: 0
-  bonusNote: {fileID: 2878872521336476375, guid: 72ff280232e8e8d41be9ed6dc134da0a, type: 3}
   bonusButton: {fileID: 925859103}
+  bonusNote: {fileID: 2878872521336476375, guid: 72ff280232e8e8d41be9ed6dc134da0a, type: 3}
 --- !u!4 &709198268
 Transform:
   m_ObjectHideFlags: 0

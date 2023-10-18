@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.UI;
@@ -140,12 +141,9 @@ public class AlimentManager : MonoBehaviour
 
         if (nextGame)
         {
-            noteSpawn.enabled = true;
-            noteSpawn.ThisRecipe = listOfAlim;
-            if (noteSpawn.once == true)
-            { 
-                noteSpawn.numberOfRecipe++;
-            }
+            //noteSpawn.enabled = true;
+            noteSpawn.ListOfRecipes.Add(listOfAlim.ToList());
+            nextGame = false; 
         }
 
         if (processing)
@@ -229,7 +227,6 @@ public class AlimentManager : MonoBehaviour
             if (!nextGame)
             {
                 nextGame = true;
-                noteSpawn.once = true; 
             }
 
             processing = true;

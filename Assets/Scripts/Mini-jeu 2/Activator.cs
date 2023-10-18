@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using System;
 
 public class Activator : MonoBehaviour
 {
@@ -21,7 +23,9 @@ public class Activator : MonoBehaviour
 
     [SerializeField]
     private PowManager powManager;
-    [SerializeField] private CuissonLevel cuissonLevel; 
+    [SerializeField] private CuissonLevel cuissonLevel;
+
+    public static Action RecipeIsFinished; 
 
     void Awake()
     {
@@ -60,7 +64,9 @@ public class Activator : MonoBehaviour
         if (score2 % numberToNextLevel == 0 && score2 != 0)
         {
             powManager.enabled = true;
-            cuissonLevel.enabled = true; 
+            cuissonLevel.enabled = true;
+            RecipeIsFinished?.Invoke();
+            score2 = 0; 
         }
     }
 
