@@ -5,6 +5,8 @@ using NaughtyAttributes;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using System;
+
 public class CuissonLevel : MonoBehaviour
 {
     public bool Show;
@@ -21,7 +23,6 @@ public class CuissonLevel : MonoBehaviour
 
     [Header("UI")]
     [SerializeField, ShowIf("Show")] TMP_Text timer;
-    [SerializeField, ShowIf("Show")] GameObject gordon;
     [SerializeField, ShowIf("Show")] GameObject service;
     [SerializeField] float reduceJaugeTime = 3f;
     public bool DebugOnly;
@@ -30,34 +31,27 @@ public class CuissonLevel : MonoBehaviour
     [SerializeField] public bool bonus3;
     [SerializeField] private BonusButton _bonusButton;
     public float remainingTimeBonus;
+    [Header("References ")]
+    [SerializeField] GameObject activation;
+    [SerializeField] PowManager powManager;
 
+    [HideInInspector] public float Interpolater { get => interpolater; }
+    [HideInInspector] public float PalierOne { get => palierOne; }
+    [HideInInspector] public float PalierTwo { get => palierTwo; }
+    [HideInInspector] public float PalierThree { get => palierThree; }
+    [HideInInspector] public float TotalNumberOfPush { get => totalNumberOfPush; }
 
     // Start is called before the first frame update
     void Start()
     {
+        activation.SetActive(true);
         interpolater = 0;
-        palierOne = 1f / 3f;
-        palierTwo = palierOne * 2;
-        palierThree = palierOne * 3;
+        palierOne = (8 / totalNumberOfPush);
+        palierTwo = (15 / totalNumberOfPush);
+        palierThree = 1f;
         reduceHeatTimer = reduceJaugeTime;
     }
-    private void FixedUpdate()
-    {
-        if (!finished)
-        {
-            if (Scoreboard.totalTime >= 0)
-            {
-                Scoreboard.totalTime = timerTotalTime - Time.time;
-
-            }
-        }
-
-        
-        
-        
-        int timeLeft = ((int)Scoreboard.totalTime);
-        timer.text = timeLeft.ToString();
-    }
+   
     // Update is called once per frame
     void Update()
     {
@@ -75,23 +69,21 @@ public class CuissonLevel : MonoBehaviour
 
             if (PowManager.actualPower == 3)
             {
-                service.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.Return))
-                {
-                    Debug.Log("Service !");
-                    Endgame();
-                }
+                service.SetActive(true);                
             }
             else
                 service.SetActive(false);
 
-            if (Scoreboard.totalTime <= 0)
+            
+            if (interpolater >= 1 && interpolater <2)
             {
-                Endgame();
-            }
+                Scoreboard.totalScore += 15;
+                finished = true;
+                interpolater = 2;
 
-            if (interpolater >= 1)
-                Endgame();
+                // LA FIN
+                Scoreboard.nbOfRecipe++;
+            }
 
         }
         else
@@ -124,12 +116,12 @@ public class CuissonLevel : MonoBehaviour
                     interpolater += (1 / totalNumberOfPush);
                     reduceHeatTimer = reduceJaugeTime;
                 }
-                if (PowManager.actualPower == 2 && interpolater <= palierTwo && interpolater >= palierOne)
+                if (PowManager.actualPower == 2 && interpolater <= palierTwo && interpolater >= palierOne - 2/totalNumberOfPush)
                 {
                     interpolater += (1 / totalNumberOfPush);
                     reduceHeatTimer = reduceJaugeTime;
                 }
-                if (PowManager.actualPower == 3 && interpolater <= palierThree && interpolater >= palierTwo)
+                if (PowManager.actualPower == 3 && interpolater <= palierThree && interpolater >= palierTwo - 2 / totalNumberOfPush)
                 {
                     interpolater += (1 / totalNumberOfPush);
                     reduceHeatTimer = reduceJaugeTime;
@@ -144,19 +136,23 @@ public class CuissonLevel : MonoBehaviour
     {
         reduceHeatTimer -= Time.deltaTime;
         if (reduceHeatTimer <= 0) 
-        { 
-            if(interpolater > 0)
+        {
+            if (interpolater > 0 && PowManager.actualPower == 1)
+            {
+                reduceHeatTimer = reduceJaugeTime;
+                interpolater -= (1 / totalNumberOfPush);
+            }
+            else if (interpolater > palierOne && PowManager.actualPower == 2)
             {
                 reduceHeatTimer = reduceJaugeTime;
                 interpolater -= (1/ totalNumberOfPush);
             }
+            else if (interpolater > palierTwo && PowManager.actualPower == 3)
+            {
+                reduceHeatTimer = reduceJaugeTime;
+                interpolater -= (1 / totalNumberOfPush);
+            }
         }
-    }
-
-    void Endgame()
-    {
-        gordon.SetActive(true);
-        finished = true;
     }
 
     private void Restart()
@@ -165,7 +161,8 @@ public class CuissonLevel : MonoBehaviour
         {
             Debug.Log("C'est reparti, au fourneau");
             finished = false;
-            gordon.SetActive(false);
+            powManager.bonus1 = true;
+            powManager.bonus2 = true;
             interpolater = 0;
         }
     }

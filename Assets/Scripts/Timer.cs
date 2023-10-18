@@ -10,8 +10,10 @@ public class Timer : MonoBehaviour
     public bool show;
     private bool finished;
     private float timeRemaining;
-    private float timerTotalTime;
+    [SerializeField] float timerTotalTime;
     [SerializeField] TMP_Text timer;
+    [SerializeField] TMP_Text txt_numberOfRecipe;
+
 
     [Header("Refereces de scripts")]
 
@@ -19,6 +21,9 @@ public class Timer : MonoBehaviour
     [SerializeField, ShowIf("show")] Spawner spawner;
     [SerializeField, ShowIf("show")] CuissonLevel cuissonLevel;
     [SerializeField, ShowIf("show")] PowManager powManager;
+    [SerializeField, ShowIf("show")] Poele lapoele;
+    [SerializeField, ShowIf("show")] GameObject gordon;
+    [SerializeField, ShowIf("show")] GameObject buttonBonus;
 
     private void FixedUpdate()
     {
@@ -33,11 +38,11 @@ public class Timer : MonoBehaviour
 
         if(timeRemaining <= 60 && timeRemaining > 30)
         {
-            FirstChangeTempo();
+            //FirstChangeTempo();
         }
         if (timeRemaining <= 30 && timeRemaining > 0)
         {
-            SecondChangeTempo();
+           // SecondChangeTempo();
         }
 
         int timeLeft = ((int)timeRemaining);
@@ -62,21 +67,28 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
-        if (show/*Scoreboard.nbOfRecipe == 3*/)
-        {
-            finished = true;
-            Scoreboard.totalScore += (int)timeRemaining*2;
+        if (Scoreboard.nbOfRecipe == 3)
+        { 
             Endgame ();
+            Scoreboard.nbOfRecipe = 4;
         }
 
-        
+        txt_numberOfRecipe.text = Scoreboard.nbOfRecipe.ToString();
     }
 
+    [Button]
     private void Endgame()
     {
-        noteSpawn.enabled = false;
+        finished = true;
+        Scoreboard.totalScore += (int)timeRemaining * 2;
+
+
         spawner.enabled = false;
+        noteSpawn.enabled = false;
         cuissonLevel.enabled = false;
         powManager.enabled = false;
+        lapoele.enabled = false;
+        gordon.SetActive(true);
+        buttonBonus.SetActive(true);
     }
 }

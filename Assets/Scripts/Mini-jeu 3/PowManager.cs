@@ -23,9 +23,16 @@ public class PowManager : MonoBehaviour
     [SerializeField] GameObject goPos2;
     [SerializeField] GameObject goPos3;
 
+    [SerializeField] CuissonLevel cuissonLevel;
+
+    public bool bonus1;
+    public bool bonus2;
+
 
     void Start()
     {
+        bonus1 = true;
+        bonus2 = true;
         inputPow = GetComponent<PlayerInput>();
         powAction = inputPow.actions.FindAction("ChangePow");
     }
@@ -37,25 +44,54 @@ public class PowManager : MonoBehaviour
 
     void ChangePower()
     {
-         changePow = powAction.ReadValue<Vector3>();
+        changePow = powAction.ReadValue<Vector3>();
             
-            if (changePow.x > 0)
-            {                
-                actualPower = 1;
-                Debug.Log(" actual power est " + actualPower);
-                flèche.transform.position = goPos1.transform.position;
+        if (changePow.x > 0)
+        {         
+            actualPower = 1;
+            Debug.Log(" actual power est " + actualPower);
+            flèche.transform.position = goPos1.transform.position;
         }
-            if (changePow.y > 0)
+        if (changePow.y > 0)
+        {
+            actualPower = 2;
+            Debug.Log(" actual power est " + actualPower);
+            flèche.transform.position = goPos2.transform.position;
+
+            // Points bonus
+            if (Mathf.Approximately(cuissonLevel.Interpolater,cuissonLevel.PalierOne - (1 / cuissonLevel.TotalNumberOfPush)) && bonus1 == true)
             {
-                actualPower = 2;
-                Debug.Log(" actual power est " + actualPower);
-                flèche.transform.position = goPos2.transform.position;
+                bonus1 = false;
+                Scoreboard.totalScore += 15;
+                Debug.Log("Perfect");
+            }
+            if (Mathf.Approximately(cuissonLevel.Interpolater, cuissonLevel.PalierOne) && bonus1 == true)
+            {
+                bonus1 = false;
+                Scoreboard.totalScore += 12;
+                Debug.Log("Almost");
+            }
         }
-            if (changePow.z > 0)
+        if (changePow.z > 0)
+        {
+            actualPower = 3;
+            Debug.Log(" actual power est " + actualPower);
+            flèche.transform.position = goPos3.transform.position;
+
+            // Points bonus
+            if (Mathf.Approximately(cuissonLevel.Interpolater, cuissonLevel.PalierTwo - (1 / cuissonLevel.TotalNumberOfPush)) && bonus2 == true )
             {
-                actualPower = 3;
-                Debug.Log(" actual power est " + actualPower);
-                flèche.transform.position = goPos3.transform.position;
+                bonus2 = false;
+                Scoreboard.totalScore += 15;
+                Debug.Log("Perfect");
+            }
+            if (Mathf.Approximately(cuissonLevel.Interpolater, cuissonLevel.PalierTwo) && bonus2 == true)
+            {
+                bonus2 = false;
+                Scoreboard.totalScore += 12;
+                Debug.Log("Almost");
+            }
+
         }
         
         

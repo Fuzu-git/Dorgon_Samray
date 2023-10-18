@@ -6,7 +6,7 @@ using UnityEngine;
 public static class Scoreboard
 {
     public static int totalScore = 0;
-    public static float totalTime;
+    public static int nbOfRecipe;
 
     // Relatif au mini-jeu numéro 1
     public static string firstAliment;

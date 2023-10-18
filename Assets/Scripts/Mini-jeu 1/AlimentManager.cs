@@ -16,7 +16,7 @@ public class AlimentManager : MonoBehaviour
     [SerializeField] float timeUntilNextRecette;
 
     [Header("Booleans")]
-    [SerializeField] bool nextGame;
+    [SerializeField] bool gameTwo;
     [SerializeField] bool processing;
     private bool uiassign;
     [SerializeField] int nbOfSucc1;
@@ -125,22 +125,19 @@ public class AlimentManager : MonoBehaviour
 
     private void Update()
     {
-        if (uiassign)
             UIAssignation();
-        else
-            return;
 
         if (!processing) 
         {
             ErrorsAndSuccess();
-            Difficulty();
-            
+            Difficulty();       
         }
         
 
-        if (nextGame)
+        if (gameTwo)
         {
             noteSpawn.enabled = true;
+            gameTwo = false;
         }
 
         if (processing)
@@ -180,6 +177,8 @@ public class AlimentManager : MonoBehaviour
         txt_rate.text = Scoreboard.rates.ToString();
         txt_level.text = Scoreboard.level.ToString();
         txt_success.text = Scoreboard.sucessCounter.ToString();
+
+        if(uiassign)
         img_alimentTake.sprite = Scoreboard.goodSprite;
     }
 
@@ -194,7 +193,6 @@ public class AlimentManager : MonoBehaviour
             }
             Scoreboard.alimentToTake = listOfAlim[goodOne].Name;
             Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
-            Scoreboard.errorCounter = 0;
             Scoreboard.sucessCounter = 0;
             if(Scoreboard.level < 4)
             Scoreboard.level++;
@@ -203,7 +201,8 @@ public class AlimentManager : MonoBehaviour
     }
     private void Difficulty()
     {
-        if(Scoreboard.level == 1)
+        
+        if (Scoreboard.level == 1)
         {
             Scoreboard.successToAchieve = nbOfSucc1;
             alimentCol.GetComponent<AlimentCollision>().velocity = velocityLevel.x;
@@ -221,11 +220,30 @@ public class AlimentManager : MonoBehaviour
         if(Scoreboard.level == 4)
         {
             Scoreboard.level = 0;
-            if(!nextGame)
-            nextGame = true;
+            if(!gameTwo)
+            gameTwo = true;
 
-            processing = true;
             alimentCol.GetComponent<AlimentCollision>().velocity = velocityLevel.x;
+
+            //NEW
+            if (Scoreboard.errorCounter == 0)
+            {
+                Scoreboard.totalScore += 15;
+            }
+            if (Scoreboard.errorCounter <= 3 && Scoreboard.errorCounter > 0)
+            {
+                Scoreboard.totalScore += 12;
+            }
+            if (Scoreboard.errorCounter <= 6 && Scoreboard.errorCounter > 3)
+            {
+                Scoreboard.totalScore += 10;
+            }
+            if (Scoreboard.errorCounter >= 7)
+            {
+                Scoreboard.totalScore += 8;
+            }
+            Scoreboard.errorCounter = 0;
+            processing = true;
         }
     }
 }

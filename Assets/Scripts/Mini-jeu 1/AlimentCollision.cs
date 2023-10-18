@@ -67,7 +67,6 @@ public class AlimentCollision : MonoBehaviour
             if(Me.Name == Scoreboard.alimentToTake)
             {
                //Debug.Log("Bien vu chacal");
-                Scoreboard.totalScore++;
                 Scoreboard.sucessCounter++;
                 Destroy(gameObject);
             }
