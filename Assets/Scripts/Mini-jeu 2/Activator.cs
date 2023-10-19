@@ -25,8 +25,11 @@ public class Activator : MonoBehaviour
     private PowManager powManager;
     [SerializeField] private CuissonLevel cuissonLevel;
 
-    public static Action RecipeIsFinished; 
+    public static Action RecipeIsFinished;
 
+    [SerializeField] private DeadZone deadZone;
+    private bool onceScore = false;  
+    
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -45,19 +48,35 @@ public class Activator : MonoBehaviour
             if (Input.GetKeyDown(key))
             {
                 StartCoroutine(Pressed());
-                if (active && !noteSpawn.bonusIsActive && key == _note.noteColor)
+                if (active && noteSpawn.bonusIsActive)
+                {
+                    Destroy(note);
+                    score2++;
+                    Scoreboard.totalScore += score2; 
+                } else if (active && !noteSpawn.bonusIsActive && key == _note.noteColor)
                 {
                     Destroy(note);
                     score2++;
                     Scoreboard.totalScore += score2; 
                 }
 
-                if (active && noteSpawn.bonusIsActive)
+                if (Scoreboard.totalTime == 0 && onceScore)
                 {
-                    Destroy(note);
-                    score2++;
-                    Scoreboard.totalScore += score2; 
+                    if (deadZone.numberNoteMissed == 0)
+                    {
+                        Scoreboard.totalScore += 15;
+                    }  else if (1 <= deadZone.numberNoteMissed && deadZone.numberNoteMissed >= 3)
+                    {
+                        Scoreboard.totalScore += 12; 
+                    } else if (4 <= deadZone.numberNoteMissed && deadZone.numberNoteMissed >= 6)
+                    {
+                        Scoreboard.totalScore += 10; 
+                    } else if (deadZone.numberNoteMissed >= 7)
+                    {
+                        Scoreboard.totalScore += 8; 
+                    }
                 }
+
             }
         }
         
