@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/Assets/Scripts/BonusButton.cs" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/Assets/Scripts/Mini-jeu 1/AlimentCollision.cs" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/Assets/Scripts/Mini-jeu 1/AlimentManager.cs" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/Assets/Scripts/Mini-jeu 2/Activator.cs" charset="windows-1252" />
   </component>
 </project>
