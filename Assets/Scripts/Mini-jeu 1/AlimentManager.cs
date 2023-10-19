@@ -90,14 +90,14 @@ public class AlimentManager : MonoBehaviour
 
         if(recette == 1)
         {
-            laRecette = "Boulettes de Licorne façon pêché originel";
+            laRecette = "Rainbow Meatballs";
             listOfAlim.Add(new AlimentStruct("Tête de Licorne", licorne));
             listOfAlim.Add(new AlimentStruct("Pomme d'Eden", pomme));
             listOfAlim.Add(new AlimentStruct("Serpent en spaghetti", serpent));
         }
         if (recette == 2)
         {
-            laRecette = "Steak de Scarabée et ses délices magiques";
+            laRecette = "Magical Scarab steak";
             listOfAlim.Add(new AlimentStruct("Scarabée", scarabée));
             listOfAlim.Add(new AlimentStruct("Haricots magiques", haricots));
             listOfAlim.Add(new AlimentStruct("Jus d'oeil de Gobelin", gobelin));
