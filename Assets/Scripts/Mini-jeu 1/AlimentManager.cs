@@ -147,7 +147,7 @@ public class AlimentManager : MonoBehaviour
 
         if (processing)
         {
-            txt_laRecette.text = "En cours de traitement...";
+            txt_laRecette.text = "Waiting for new order...";
             StartCoroutine(Processing());
         }
 
