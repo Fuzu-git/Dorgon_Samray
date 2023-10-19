@@ -34,6 +34,7 @@ public class CuissonLevel : MonoBehaviour
     [Header("References ")]
     [SerializeField] GameObject activation;
     [SerializeField] PowManager powManager;
+    [SerializeField] GameObject canHeat;
 
     [HideInInspector] public float Interpolater { get => interpolater; }
     [HideInInspector] public float PalierOne { get => palierOne; }
@@ -66,8 +67,13 @@ public class CuissonLevel : MonoBehaviour
         {
             if(Scoreboard.recipeToDo > 0)
             {
+                canHeat.SetActive(true);
                 IncrementHeat();
                 Cooldown();
+            }
+            else
+            {
+                canHeat.SetActive(false);
             }
             
 

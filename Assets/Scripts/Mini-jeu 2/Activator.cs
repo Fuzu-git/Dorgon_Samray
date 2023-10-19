@@ -68,6 +68,7 @@ public class Activator : MonoBehaviour
                 cuissonLevel.enabled = true;
                 RecipeIsFinished?.Invoke();
                 score2 = 0;
+                Scoreboard.recipeToDo += 1;
             }
         }
         else
