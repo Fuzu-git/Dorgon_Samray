@@ -60,23 +60,6 @@ public class Activator : MonoBehaviour
                     Scoreboard.totalScore += score2; 
                 }
             }
-            
-            if (Scoreboard.totalTime == 0 && onceScore)
-            {
-                if (deadZone.numberNoteMissed == 0)
-                {
-                    Scoreboard.totalScore += 15;
-                }  else if (1 <= deadZone.numberNoteMissed && deadZone.numberNoteMissed >= 3)
-                {
-                    Scoreboard.totalScore += 12; 
-                } else if (4 <= deadZone.numberNoteMissed && deadZone.numberNoteMissed >= 6)
-                {
-                    Scoreboard.totalScore += 10; 
-                } else if (deadZone.numberNoteMissed >= 7)
-                {
-                    Scoreboard.totalScore += 8; 
-                }
-            }
         }
         
         if (score2 % numberToNextLevel == 0 && score2 != 0)
@@ -85,6 +68,23 @@ public class Activator : MonoBehaviour
             cuissonLevel.enabled = true;
             RecipeIsFinished?.Invoke();
             score2 = 0; 
+        }
+        
+        if (Scoreboard.totalTime == 0 && onceScore)
+        {
+            if (deadZone.numberNoteMissed == 0)
+            {
+                Scoreboard.totalScore += 15;
+            }  else if (1 <= deadZone.numberNoteMissed && deadZone.numberNoteMissed >= 3)
+            {
+                Scoreboard.totalScore += 12; 
+            } else if (4 <= deadZone.numberNoteMissed && deadZone.numberNoteMissed >= 6)
+            {
+                Scoreboard.totalScore += 10; 
+            } else if (deadZone.numberNoteMissed >= 7)
+            {
+                Scoreboard.totalScore += 8; 
+            }
         }
     }
 
