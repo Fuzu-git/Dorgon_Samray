@@ -51,12 +51,13 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_level;
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_success;
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_laRecette;
-    [SerializeField, ShowIf("ShowUI")] Image img_alimentTake;
+    [SerializeField, ShowIf("ShowUI")] SpriteRenderer img_alimentTake;
 
     [Header("Refs à d'autres scripts")]
     [SerializeField, ShowIf("show")] NoteSpawn noteSpawn;
     [SerializeField, ShowIf("show")] Spawner spawner;
     [SerializeField] Sprite rouage;
+    [SerializeField] Animator page;
 
     #region debug+addalim
     [Button]
@@ -158,10 +159,12 @@ public class AlimentManager : MonoBehaviour
         listOfAlim = null;
         processing = false;
         uiassign = false;
-        img_alimentTake.sprite = rouage;
+        page.SetBool("ChangeRecipe", true);
+       // img_alimentTake.sprite = rouage;
         yield return new WaitForSeconds(timeUntilNextRecette);
         IniatizeListOfAlim() ;       
         AlimentToTake();
+        page.SetBool("ChangeRecipe", false);
         spawner.canSpawn = true;
         uiassign = true;
     }

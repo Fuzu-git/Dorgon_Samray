@@ -28,6 +28,8 @@ public class Timer : MonoBehaviour
     [SerializeField, ShowIf("show")] Poele lapoele;
     [SerializeField, ShowIf("show")] GameObject gordon;
     [SerializeField, ShowIf("show")] GameObject buttonBonus;
+    [SerializeField] GameObject tempo;
+    [SerializeField] GameObject tempo2;
 
     private void FixedUpdate()
     {
@@ -40,13 +42,13 @@ public class Timer : MonoBehaviour
             }
         }
 
-        if(timeRemaining <= 60 && timeRemaining > 30)
+        if(timeRemaining <= 61 && timeRemaining > 31)
         {
-            //FirstChangeTempo();
+            FirstChangeTempo();
         }
-        if (timeRemaining <= 30 && timeRemaining > 0)
+        if (timeRemaining <= 31 && timeRemaining > 0)
         {
-           // SecondChangeTempo();
+            SecondChangeTempo();
         }
 
         int timeLeft = ((int)timeRemaining);
@@ -61,12 +63,12 @@ public class Timer : MonoBehaviour
 
     private void FirstChangeTempo()
     {
-        throw new NotImplementedException();
+        tempo.SetActive(true);
     }
 
     private void SecondChangeTempo()
     {
-        throw new NotImplementedException();
+        tempo2.SetActive(true);
     }
 
     private void Update()
