@@ -7,8 +7,7 @@ public class Note : MonoBehaviour
     public float speed;
     private Rigidbody2D _rb;
     public KeyCode noteColor;
-
-    [SerializeField] private float acceleration; 
+    public bool isBonusNote = false; 
 
     void Awake()
     {

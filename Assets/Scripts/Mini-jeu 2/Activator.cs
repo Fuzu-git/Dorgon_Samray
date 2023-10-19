@@ -44,20 +44,21 @@ public class Activator : MonoBehaviour
     {
         foreach (KeyCode key in keyList)
         {
-            
             if (Input.GetKeyDown(key))
             {
                 StartCoroutine(Pressed());
-                if (active && noteSpawn.bonusIsActive)
+                if (active && _note.isBonusNote)
                 {
                     Destroy(note);
                     score2++;
-                    Scoreboard.totalScore += score2; 
-                } else if (active && !noteSpawn.bonusIsActive && key == _note.noteColor)
+                } else if (active && !_note.isBonusNote)
                 {
-                    Destroy(note);
-                    score2++;
-                    Scoreboard.totalScore += score2; 
+                    if (key == _note.noteColor)
+                    {
+                        
+                        Destroy(note);
+                        score2++;
+                    }
                 }
             }
         }

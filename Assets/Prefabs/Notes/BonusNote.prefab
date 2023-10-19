@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5196614997144111388}
   - component: {fileID: 2489976618017693798}
   - component: {fileID: 2870452481245125598}
-  - component: {fileID: 2450834483559607546}
   - component: {fileID: 2427106783633614093}
+  - component: {fileID: 2687083887544239263}
   m_Layer: 7
   m_Name: BonusNote
   m_TagString: Note
@@ -114,19 +114,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!114 &2450834483559607546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2878872521336476375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5321239349521ed45ab1f53b21303efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
 --- !u!61 &2427106783633614093
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,3 +159,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.89, y: 8.62}
   m_EdgeRadius: 0
+--- !u!114 &2687083887544239263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2878872521336476375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55793db12659887438928fd3b28c4840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  noteColor: 0
+  isBonusNote: 1
+  acceleration: 0
