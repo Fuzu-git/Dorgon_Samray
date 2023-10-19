@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Timer : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Timer : MonoBehaviour
     [SerializeField] TMP_Text timer;
     [SerializeField] TMP_Text txt_numberOfRecipe;
 
+    public List<AudioClip> HighScoreAudioClip = new List<AudioClip>(); 
+    public List<AudioClip> LowScoreAudioClip = new List<AudioClip>();
+    public AudioSource ScoreAudioSource; 
 
     [Header("Refereces de scripts")]
 
@@ -82,6 +86,19 @@ public class Timer : MonoBehaviour
         finished = true;
         Scoreboard.totalScore += (int)timeRemaining * 2;
 
+        if ((int)timeRemaining <= 0 )
+        { 
+            var randomSound = Random.Range(0, LowScoreAudioClip.Count);
+            ScoreAudioSource.clip = LowScoreAudioClip[randomSound];
+            ScoreAudioSource.Play();
+        } else if ((int)timeRemaining >= 0 )
+        {
+            
+            var randomSound = Random.Range(0, HighScoreAudioClip.Count);
+            ScoreAudioSource.clip = HighScoreAudioClip[randomSound];
+            ScoreAudioSource.Play();
+        }
+        
 
         spawner.enabled = false;
         noteSpawn.enabled = false;

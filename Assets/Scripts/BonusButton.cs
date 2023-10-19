@@ -17,6 +17,9 @@ public class BonusButton : MonoBehaviour
     public int alimentBonus;
     public int cutterNumberNoteBonus;
 
+    public List<AudioClip> bonusSoundList = new List<AudioClip>();
+    public AudioSource bonusAudioSource; 
+
     public void ActivateBonus()
     {
         _randomBonus = Random.Range(0, 3);
@@ -41,5 +44,12 @@ public class BonusButton : MonoBehaviour
                 Debug.Log("Bonus 3 - jauge");
                 break;
         }
+    }
+
+    public void PlayAudio()
+    {
+        var randomSound = Random.Range(0, bonusSoundList.Count);
+        bonusAudioSource.clip = bonusSoundList[randomSound];
+        bonusAudioSource.Play(); 
     }
 }

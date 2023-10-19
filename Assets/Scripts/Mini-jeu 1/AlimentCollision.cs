@@ -11,6 +11,10 @@ public class AlimentCollision : MonoBehaviour
     [SerializeField] string alimentType;
     [SerializeField] public float velocity;
 
+    
+    public List<AudioClip> ErrorSoundList = new List<AudioClip>();
+    public AudioSource errorAudioSource; 
+    
     [Header("Bonus")]
     [SerializeField] public bool bonus;
     [SerializeField] private BonusButton _bonusButton;
@@ -74,6 +78,11 @@ public class AlimentCollision : MonoBehaviour
             {
                //Debug.Log("Noublard");
                 Scoreboard.errorCounter++;
+                
+                var randomSound = Random.Range(0, ErrorSoundList.Count);
+                errorAudioSource.clip = ErrorSoundList[randomSound]; 
+                errorAudioSource.Play();
+                
                 Destroy(gameObject);
             }
         }
@@ -84,6 +93,10 @@ public class AlimentCollision : MonoBehaviour
                //Debug.Log("T'auras jamais la recette !");
                 Scoreboard.rates++;
                 Scoreboard.errorCounter++;
+                
+                var randomSound = Random.Range(0, ErrorSoundList.Count);
+                errorAudioSource.clip = ErrorSoundList[randomSound]; 
+                errorAudioSource.Play();
             }
         Destroy(gameObject);
         }
