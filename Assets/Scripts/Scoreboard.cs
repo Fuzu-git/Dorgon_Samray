@@ -7,6 +7,7 @@ public static class Scoreboard
 {
     public static int totalScore = 0;
     public static int nbOfRecipe;
+    public static int recipeToDo;
 
     // Relatif au mini-jeu numéro 1
     public static string firstAliment;

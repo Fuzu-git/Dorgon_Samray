@@ -64,8 +64,12 @@ public class CuissonLevel : MonoBehaviour
 
         if(!finished)
         {
-            IncrementHeat();
-            Cooldown();
+            if(Scoreboard.recipeToDo > 0)
+            {
+                IncrementHeat();
+                Cooldown();
+            }
+            
 
             if (PowManager.actualPower == 3)
             {
@@ -80,7 +84,7 @@ public class CuissonLevel : MonoBehaviour
                 Scoreboard.totalScore += 15;
                 finished = true;
                 interpolater = 2;
-
+                Scoreboard.recipeToDo -= 1;
                 // LA FIN
                 Scoreboard.nbOfRecipe++;
             }
