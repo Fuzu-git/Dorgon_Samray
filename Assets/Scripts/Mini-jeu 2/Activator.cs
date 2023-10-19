@@ -45,6 +45,12 @@ public class Activator : MonoBehaviour
             if (Input.GetKeyDown(key))
             {
                 StartCoroutine(Pressed());
+                if (active && noteSpawn.bonusIsActive)
+                {
+                    Destroy(note);
+                    score2++;
+                    Scoreboard.totalScore += score2; 
+                }
                 if (active && !noteSpawn.bonusIsActive && key == _note.noteColor)
                 {
                     Destroy(note);
@@ -52,22 +58,23 @@ public class Activator : MonoBehaviour
                     Scoreboard.totalScore += score2; 
                 }
 
-                if (active && noteSpawn.bonusIsActive)
-                {
-                    Destroy(note);
-                    score2++;
-                    Scoreboard.totalScore += score2; 
-                }
             }
         }
-        
-        if (score2 % numberToNextLevel == 0 && score2 != 0)
+        if(numberToNextLevel != 0)
         {
-            powManager.enabled = true;
-            cuissonLevel.enabled = true;
-            RecipeIsFinished?.Invoke();
-            score2 = 0; 
+            if (score2 % numberToNextLevel == 0 && score2 != 0)
+            {
+                powManager.enabled = true;
+                cuissonLevel.enabled = true;
+                RecipeIsFinished?.Invoke();
+                score2 = 0;
+            }
         }
+        else
+        {
+            Debug.Log("numberToNextLevel n'est pas initialisé");
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D col)
