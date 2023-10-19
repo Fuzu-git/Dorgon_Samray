@@ -11,7 +11,6 @@ public class DeadZone : MonoBehaviour
         {
             var note = col.gameObject;
             numberNoteMissed++; 
-            Debug.Log(numberNoteMissed);
             Destroy(note); 
         }
     }
