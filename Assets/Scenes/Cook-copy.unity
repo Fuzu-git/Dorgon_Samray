@@ -1652,14 +1652,14 @@ MonoBehaviour:
   numberOfSpawns: 0
   inProgress: 0
   canSpawn: 0
-  multiplier: 0.25
+  multiplier: 0.29
   spawnAngleMax: 30
   spawnSizeMinMax: {x: 0.05, y: 0.05}
-  countBetweenTwoCorrectAlimentMax: 0
-  countBetweenTwoCorrectAliment: 0
-  secondsBetweenSpawnsMinMax: {x: 1, y: 1}
-  spawnPositionModifier: {x: 5, y: 0}
-  spawnPositionMax: {x: 0, y: 0}
+  countBetweenTwoCorrectAlimentMax: 3
+  countBetweenTwoCorrectAliment: 1
+  secondsBetweenSpawnsMinMax: {x: 1, y: 2}
+  spawnPositionModifier: {x: 5.8, y: 0}
+  spawnPositionMax: {x: 2.86, y: 0}
   spawnPositionMin: {x: 0, y: 0}
 --- !u!1 &383107888
 GameObject:
@@ -2685,7 +2685,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709198266}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542bb5b1297755469576697a7ef918d, type: 3}
   m_Name: 
@@ -2696,11 +2696,11 @@ MonoBehaviour:
   noteList:
   - {fileID: 2878872521336476375, guid: cb6a23be7dfff9b479ea03343e7d8fe5, type: 3}
   - {fileID: 2878872521336476375, guid: da89fa89f71a5c347b95ef5556a8fcc1, type: 3}
-  delta: 1
-  minDelta: 0.5
+  delta: 3
+  minDelta: 2.5
   bonusIsActive: 0
-  bonusButton: {fileID: 925859103}
   bonusNote: {fileID: 2878872521336476375, guid: 72ff280232e8e8d41be9ed6dc134da0a, type: 3}
+  bonusButton: {fileID: 925859103}
 --- !u!4 &709198268
 Transform:
   m_ObjectHideFlags: 0
@@ -3028,16 +3028,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   show: 1
   ShowUI: 1
-  timeUntilNextRecette: 5
+  timeUntilNextRecette: 6
   nextGame: 0
   processing: 0
-  nbOfSucc1: 1
-  nbOfSucc2: 1
-  nbOfSucc3: 1
+  nbOfSucc1: 2
+  nbOfSucc2: 3
+  nbOfSucc3: 5
   nameOfNewAlim: "l\xE9gume"
   spriteOfNewAlim: {fileID: 21300000, guid: f655791bc04a08e45851e35f3a2aae93, type: 3}
   alimentCol: {fileID: 1013869195}
-  velocityLevel: {x: 4, y: 6, z: 8}
+  velocityLevel: {x: 2, y: 2.5, z: 2.8}
   licorne: {fileID: 21300000, guid: c7508da82a445d347a3a9dcaa0275167, type: 3}
   serpent: {fileID: 21300000, guid: f655791bc04a08e45851e35f3a2aae93, type: 3}
   pomme: {fileID: 21300000, guid: 235a35534c39ec840b65388e2fb1d4e0, type: 3}
@@ -4940,6 +4940,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1435895432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1435895433}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1435895433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435895432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2004417261}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1448229274
 GameObject:
   m_ObjectHideFlags: 0
@@ -5737,7 +5768,7 @@ PrefabInstance:
       objectReference: {fileID: 2004417262}
     - target: {fileID: 3559636678661779360, guid: d1e89c1f4f15dcb429879dae10c72c65, type: 3}
       propertyPath: numberToNextLevel
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3559636678661779360, guid: d1e89c1f4f15dcb429879dae10c72c65, type: 3}
       propertyPath: keyList.Array.size
@@ -6884,7 +6915,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.07, z: 0}
   m_LocalScale: {x: 2.102, y: -0.0074484674, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1435895433}
   m_Father: {fileID: 1553847548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2004417262
@@ -6922,7 +6954,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -4514981268742406530, guid: d3bd2fe9004bd7347aca40d9d7de2253, type: 3}
   timer: {fileID: 1204579933}
-  gordon: {fileID: 1264602990}
+  gordon: {fileID: 1435895432}
   service: {fileID: 1973721405}
   reduceJaugeTime: 3
   DebugOnly: 0

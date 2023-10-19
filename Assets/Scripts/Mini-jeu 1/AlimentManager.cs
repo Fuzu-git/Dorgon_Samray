@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.UI;
@@ -24,7 +25,7 @@ public class AlimentManager : MonoBehaviour
     [SerializeField] int nbOfSucc3;
     [Header("int")]
 
-    [Header("Propriétés de l'aliment à ajouter")]
+    [Header("PropriÃ©tÃ©s de l'aliment Ã  ajouter")]
     [SerializeField, ShowIf("show")] string nameOfNewAlim;
     [SerializeField, ShowIf("show")] Sprite spriteOfNewAlim;
     [SerializeField, ShowIf("show")] GameObject alimentCol;
@@ -40,7 +41,7 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("show")] Sprite dragon;
     [SerializeField, ShowIf("show")] Sprite gobelin;
     [SerializeField, ShowIf("show")] Sprite haricots;
-    [SerializeField, ShowIf("show")] Sprite scarabée;
+    [SerializeField, ShowIf("show")] Sprite scarabÃ©e;
     //[SerializeField, ShowIf("show")] GameObject licorne;
 
     [Header("UI relatif")]
@@ -52,7 +53,7 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_laRecette;
     [SerializeField, ShowIf("ShowUI")] Image img_alimentTake;
 
-    [Header("Refs à d'autres scripts")]
+    [Header("Refs Ã  d'autres scripts")]
     [SerializeField, ShowIf("show")] NoteSpawn noteSpawn;
     [SerializeField, ShowIf("show")] Spawner spawner;
     [SerializeField] Sprite rouage;
@@ -89,15 +90,15 @@ public class AlimentManager : MonoBehaviour
 
         if(recette == 1)
         {
-            laRecette = "Boulettes de Licorne façon pêché originel";
-            listOfAlim.Add(new AlimentStruct("Tête de Licorne", licorne));
+            laRecette = "Boulettes de Licorne faÃ§on pÃªchÃ© originel";
+            listOfAlim.Add(new AlimentStruct("TÃªte de Licorne", licorne));
             listOfAlim.Add(new AlimentStruct("Pomme d'Eden", pomme));
             listOfAlim.Add(new AlimentStruct("Serpent en spaghetti", serpent));
         }
         if (recette == 2)
         {
-            laRecette = "Steak de Scarabée et ses délices magiques";
-            listOfAlim.Add(new AlimentStruct("Scarabée", scarabée));
+            laRecette = "Steak de ScarabÃ©e et ses dÃ©lices magiques";
+            listOfAlim.Add(new AlimentStruct("ScarabÃ©e", scarabÃ©e));
             listOfAlim.Add(new AlimentStruct("Haricots magiques", haricots));
             listOfAlim.Add(new AlimentStruct("Jus d'oeil de Gobelin", gobelin));
         }
@@ -136,8 +137,12 @@ public class AlimentManager : MonoBehaviour
 
         if (gameTwo)
         {
+
             noteSpawn.enabled = true;
             gameTwo = false;
+            //noteSpawn.enabled = true;
+            noteSpawn.ListOfRecipes.Add(listOfAlim.ToList());
+
         }
 
         if (processing)
@@ -168,7 +173,7 @@ public class AlimentManager : MonoBehaviour
         Scoreboard.goodSprite = listOfAlim[goodOne].Sprite;
         Scoreboard.level = 1;
         Scoreboard.successToAchieve = 2;
-        //Debug.Log("L'aliment à prendre est :" + Scoreboard.alimentToTake);
+        //Debug.Log("L'aliment Ã  prendre est :" + Scoreboard.alimentToTake);
     }
     private void UIAssignation()
     {
@@ -220,8 +225,10 @@ public class AlimentManager : MonoBehaviour
         if(Scoreboard.level == 4)
         {
             Scoreboard.level = 0;
+
             if(!gameTwo)
             gameTwo = true;
+
 
             alimentCol.GetComponent<AlimentCollision>().velocity = velocityLevel.x;
 

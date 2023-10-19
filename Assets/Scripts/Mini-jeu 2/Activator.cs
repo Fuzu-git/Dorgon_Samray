@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using System;
 
 public class Activator : MonoBehaviour
 {
@@ -15,11 +17,15 @@ public class Activator : MonoBehaviour
     private BonusNote _bonusNote;
     [SerializeField] private NoteSpawn noteSpawn;
 
-    public int score2 = 0;
+    
+    [HideInInspector] public int score2 = 0;
+    [SerializeField] private int numberToNextLevel; 
 
     [SerializeField]
     private PowManager powManager;
-    [SerializeField] private CuissonLevel cuissonLevel; 
+    [SerializeField] private CuissonLevel cuissonLevel;
+
+    public static Action RecipeIsFinished; 
 
     void Awake()
     {
@@ -43,20 +49,24 @@ public class Activator : MonoBehaviour
                 {
                     Destroy(note);
                     score2++;
+                    Scoreboard.totalScore += score2; 
                 }
 
                 if (active && noteSpawn.bonusIsActive)
                 {
                     Destroy(note);
                     score2++;
+                    Scoreboard.totalScore += score2; 
                 }
             }
         }
         
-        if (score2 % 10 == 0 && score2 != 0)
+        if (score2 % numberToNextLevel == 0 && score2 != 0)
         {
             powManager.enabled = true;
-            cuissonLevel.enabled = true; 
+            cuissonLevel.enabled = true;
+            RecipeIsFinished?.Invoke();
+            score2 = 0; 
         }
     }
 

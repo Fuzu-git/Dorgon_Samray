@@ -7,8 +7,6 @@ public class BonusNote : MonoBehaviour
     public float speed;
     private Rigidbody2D _rb;
 
-    [SerializeField] private float acceleration; 
-
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
