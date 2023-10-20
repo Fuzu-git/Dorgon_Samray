@@ -2592,7 +2592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   show: 1
   finished: 0
-  timerTotalTime: 120
+  timerTotalTime: 3
   timer: {fileID: 1204579933}
   txt_numberOfRecipe: {fileID: 703885061}
   HighScoreAudioClip:
@@ -2834,7 +2834,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 287
   m_Sprite: {fileID: 21300000, guid: fa18c661e968b2b42bb51959112a01fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7160,7 +7160,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 55637a0bc3ff77a42a19051b5f824d95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

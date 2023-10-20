@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -82,15 +81,7 @@ public class Timer : MonoBehaviour
             Endgame ();
             Scoreboard.nbOfRecipe = 4;
         }
-        if (finished)
-        {
-            gordon.SetActive(true);
-            if ( Input.anyKeyDown)
-            {
-                SceneManager.LoadScene("Final Scene");
-
-            }
-        }
+        
         txt_numberOfRecipe.text = Scoreboard.nbOfRecipe.ToString();
     }
 
@@ -112,7 +103,21 @@ public class Timer : MonoBehaviour
             ScoreAudioSource.clip = HighScoreAudioClip[randomSound];
             ScoreAudioSource.Play();
         }
-        
+        gordon.SetActive(true);
+        if (Input.anyKeyDown)
+        {
+            if (SceneManager.GetActiveScene().name == "Final Scene")
+            {
+                SceneManager.LoadScene("Final Scene 1");
+                //SceneManager.UnloadSceneAsync("Final Scene");
+            }
+
+            else if(SceneManager.GetActiveScene().name == "Final Scene 1")
+            {
+               // SceneManager.UnloadSceneAsync("Final Scene 1");
+                SceneManager.LoadScene("Final Scene");
+            }
+        }
 
         spawner.enabled = false;
         noteSpawn.enabled = false;
