@@ -2592,7 +2592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   show: 1
   finished: 0
-  timerTotalTime: 2
+  timerTotalTime: 120
   timer: {fileID: 1204579933}
   txt_numberOfRecipe: {fileID: 703885061}
   HighScoreAudioClip:

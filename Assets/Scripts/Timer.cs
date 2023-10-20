@@ -106,7 +106,8 @@ public class Timer : MonoBehaviour
         gordon.SetActive(true);
         if (Input.anyKeyDown)
         {       
-                SceneManager.LoadScene("Final Scene");          
+             Application.Quit();
+                SceneManager.LoadScene("SampleScene");          
            
         }
 
