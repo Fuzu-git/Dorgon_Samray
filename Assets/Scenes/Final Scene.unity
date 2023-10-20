@@ -4348,7 +4348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f3daa66a0689949a16b2d8456d2c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 4
   firstLimit: {fileID: 73615390}
   secondLimit: {fileID: 1021827500}
 --- !u!61 &779507417
@@ -4679,7 +4679,7 @@ MonoBehaviour:
   nameOfNewAlim: "l\xE9gume"
   spriteOfNewAlim: {fileID: 21300000, guid: f655791bc04a08e45851e35f3a2aae93, type: 3}
   alimentCol: {fileID: 1013869195}
-  velocityLevel: {x: 2, y: 2.5, z: 2.8}
+  velocityLevel: {x: 1.5, y: 2, z: 2.3}
   licorne: {fileID: 21300000, guid: 2ba40bd7993c24e48b7ab8fed0a87587, type: 3}
   serpent: {fileID: 21300000, guid: 4b6f2fbdea36d2c4c956a297e99e31f7, type: 3}
   pomme: {fileID: 21300000, guid: 4ff00a980f72d8d499f5b0cdea001682, type: 3}
@@ -4833,7 +4833,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 16
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.019583894, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.10624695, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -10738,7 +10738,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 16
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.2783713, g: 0.7254902, b: 0.14117645, a: 1}
+  m_Color: {r: 1, g: 0.12306328, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
