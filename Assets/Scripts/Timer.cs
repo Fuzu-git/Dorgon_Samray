@@ -105,18 +105,9 @@ public class Timer : MonoBehaviour
         }
         gordon.SetActive(true);
         if (Input.anyKeyDown)
-        {
-            if (SceneManager.GetActiveScene().name == "Final Scene")
-            {
-                SceneManager.LoadScene("Final Scene 1");
-                //SceneManager.UnloadSceneAsync("Final Scene");
-            }
-
-            else if(SceneManager.GetActiveScene().name == "Final Scene 1")
-            {
-               // SceneManager.UnloadSceneAsync("Final Scene 1");
-                SceneManager.LoadScene("Final Scene");
-            }
+        {       
+                SceneManager.LoadScene("Final Scene");          
+           
         }
 
         spawner.enabled = false;
