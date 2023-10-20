@@ -42,6 +42,9 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("show")] Sprite gobelin;
     [SerializeField, ShowIf("show")] Sprite haricots;
     [SerializeField, ShowIf("show")] Sprite scarabée;
+    [SerializeField, ShowIf("show")] Sprite platfini1;
+    [SerializeField, ShowIf("show")] Sprite platfini2;
+    [SerializeField, ShowIf("show")] Sprite platfini3;
     //[SerializeField, ShowIf("show")] GameObject licorne;
 
     [Header("UI relatif")]
@@ -51,6 +54,13 @@ public class AlimentManager : MonoBehaviour
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_level;
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_success;
     [SerializeField, ShowIf("ShowUI")] TMP_Text txt_laRecette;
+
+
+    [SerializeField, ShowIf("ShowUI")] Image plat1;
+    [SerializeField, ShowIf("ShowUI")] Image plat2;
+    [SerializeField, ShowIf("ShowUI")] Image plat3;
+
+
     [SerializeField, ShowIf("ShowUI")] SpriteRenderer img_alimentTake;
 
     [Header("Refs à d'autres scripts")]
@@ -112,6 +122,28 @@ public class AlimentManager : MonoBehaviour
         }
 
         txt_laRecette.text = laRecette;
+        if(plat1.sprite != platfini1)
+        {
+            if (laRecette == "Rainbow Meatballs")
+            {
+                plat1.sprite = platfini1;
+            } 
+        }
+        if (plat2.sprite != platfini2)
+        {
+            if (laRecette == "Magical Scarab steak")
+            {
+                plat2.sprite = platfini2;
+            }
+        }
+        if (plat3.sprite != platfini3)
+        {
+            if (laRecette == "Ramen Bajiru-Tatsu")
+            {
+                plat3.sprite = platfini3;
+            }
+
+        }
     }
     #endregion
     private void Awake()

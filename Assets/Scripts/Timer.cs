@@ -3,13 +3,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class Timer : MonoBehaviour
 {
     public bool show;
-    private bool finished;
+    [SerializeField] private bool finished;
     private float timeRemaining;
     [SerializeField] float timerTotalTime;
     [SerializeField] TMP_Text timer;
@@ -59,7 +61,9 @@ public class Timer : MonoBehaviour
             finished = true;
             Endgame();
         }
+
     }
+
 
     private void FirstChangeTempo()
     {
@@ -78,7 +82,15 @@ public class Timer : MonoBehaviour
             Endgame ();
             Scoreboard.nbOfRecipe = 4;
         }
+        if (finished)
+        {
+            gordon.SetActive(true);
+            if ( Input.anyKeyDown)
+            {
+                SceneManager.LoadScene("Final Scene");
 
+            }
+        }
         txt_numberOfRecipe.text = Scoreboard.nbOfRecipe.ToString();
     }
 
